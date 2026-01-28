@@ -1,5 +1,5 @@
 -- ========================================
--- SUPABASE AUTH TRIGGERS AND FUNCTIONS
+-- MIGRATION 004: CREATE AUTH TRIGGERS AND FUNCTIONS
 -- ========================================
 
 -- Function to create a profile entry for new users

@@ -43,10 +43,13 @@ npm install
 
 1. Create a new Supabase project at [https://app.supabase.io](https://app.supabase.io)
 2. Navigate to the SQL Editor in your Supabase dashboard
-3. Run the SQL schema from `supabase/schema.sql`
-4. Run the RLS policies from `supabase/rls.sql`
-5. Run the auth triggers from `supabase/auth-triggers.sql`
-6. Create storage buckets:
+3. Run the migration files in numerical order from the `supabase/migrations` directory:
+   - `001_create_tables.sql` - Creates all tables and indexes
+   - `002_enable_rls.sql` - Enables Row Level Security on all tables
+   - `003_create_policies.sql` - Creates RLS policies for data protection
+   - `004_create_triggers.sql` - Creates authentication triggers
+   - `005_insert_seed_data.sql` - Inserts initial seed data
+4. Create storage buckets:
    - `project-images` for portfolio images
    - `service-icons` for service icons
    - Set both buckets to allow public read access

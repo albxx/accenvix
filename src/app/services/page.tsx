@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase/client'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 export default function ServicesPage() {
   const [services, setServices] = useState<any[]>([])
@@ -54,8 +56,8 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {services.length > 0 ? (
               services.map((service) => (
-                <div key={service.id} className="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-                  <div className="p-6">
+                <Card key={service.id} hoverEffect className="h-full">
+                  <CardContent className="p-6">
                     <div className="flex items-center mb-4">
                       {service.icon_url ? (
                         <img
@@ -75,8 +77,8 @@ export default function ServicesPage() {
                     <p className="text-gray-600">
                       {service.description || 'No description available for this service.'}
                     </p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))
             ) : (
               <div className="col-span-3 text-center py-12">
@@ -93,11 +95,10 @@ export default function ServicesPage() {
             <p className="text-lg text-gray-600 mb-6">
               Don't see exactly what you need? We specialize in creating custom technology solutions tailored to your specific business requirements. Our team works closely with you to understand your challenges and develop innovative solutions that drive results.
             </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-            >
-              Request Custom Solution
+            <a href="/contact">
+              <Button size="lg">
+                Request Custom Solution
+              </Button>
             </a>
           </div>
         </div>

@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
+import { Input, TextArea } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,9 +12,40 @@ export default function ContactPage() {
     subject: '',
     message: ''
   })
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState('')
+
+  const validateForm = () => {
+    let isValid = true
+    const newErrors = { name: '', email: '', message: '' }
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required'
+      isValid = false
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+      isValid = false
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address'
+      isValid = false
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+      isValid = false
+    }
+
+    setErrors(newErrors)
+    return isValid
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -20,10 +53,23 @@ export default function ContactPage() {
       ...prev,
       [name]: value
     }))
+
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitError('')
 
@@ -90,72 +136,45 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
+                <Input
+                  label="Name"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  error={errors.name}
+                  required
+                />
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
+                <Input
+                  label="Email"
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                  required
+                />
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
-                    Subject
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="subject"
-                      id="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
+                <Input
+                  label="Subject"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                />
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Message
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border border-gray-300 rounded-md"
-                    />
-                  </div>
-                </div>
+                <TextArea
+                  label="Message"
+                  id="message"
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  error={errors.message}
+                  required
+                />
 
                 {submitError && (
                   <div className="rounded-md bg-red-50 p-4">
@@ -177,15 +196,13 @@ export default function ContactPage() {
                   </div>
                 )}
 
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
+                <Button
+                  type="submit"
+                  isLoading={isSubmitting}
+                  className="w-full"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </Button>
               </form>
             )}
           </div>

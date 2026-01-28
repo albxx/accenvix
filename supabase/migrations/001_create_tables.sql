@@ -1,5 +1,5 @@
 -- ========================================
--- ACCENVIX SOLUTIONS DATABASE SCHEMA
+-- MIGRATION 001: CREATE TABLES
 -- ========================================
 
 -- Create services table
@@ -58,37 +58,8 @@ INSERT INTO settings (site_title)
 VALUES ('Accenvix Solutions')
 ON CONFLICT (id) DO NOTHING;
 
--- Insert default admin user (will be updated with real user id after auth setup)
--- INSERT INTO profiles (id, email, role) VALUES ('ADMIN_USER_ID', 'admin@accenvix.com', 'admin');
-
--- Enable RLS on all tables
-ALTER TABLE services ENABLE ROW LEVEL SECURITY;
-ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
-ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
-
--- Create RLS policies (to be updated with proper policies in Step 3)
--- See supabase/rls.sql for the complete RLS policies
-CREATE POLICY "Public can view services" ON services FOR SELECT USING (true);
-CREATE POLICY "Admin full access to services" ON services FOR ALL TO authenticated USING (true);
-
-CREATE POLICY "Public can view projects" ON projects FOR SELECT USING (true);
-CREATE POLICY "Admin full access to projects" ON projects FOR ALL TO authenticated USING (true);
-
-CREATE POLICY "Public can insert contact messages" ON contact_messages FOR INSERT WITH CHECK (true);
-CREATE POLICY "Admin can view contact messages" ON contact_messages FOR SELECT TO authenticated USING (true);
-
-CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
-CREATE POLICY "Admin full access to profiles" ON profiles FOR ALL TO authenticated USING (true);
-
-CREATE POLICY "Public can view settings" ON settings FOR SELECT USING (true);
-
 -- Create indexes
 CREATE INDEX IF NOT EXISTS idx_services_title ON services(title);
 CREATE INDEX IF NOT EXISTS idx_projects_title ON projects(title);
 CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at ON contact_messages(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_profiles_role ON profiles(role);
-
--- Set up storage buckets
--- This will be done via the Supabase dashboard or CLI after project creation

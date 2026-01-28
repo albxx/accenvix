@@ -8,18 +8,12 @@
 ## Database Schema Setup
 
 1. In your Supabase project, go to the SQL Editor
-2. Copy and paste the contents of `supabase/schema.sql` into the editor
-3. Run the SQL to create all tables and initial setup
-
-## Row Level Security Configuration
-
-1. After creating the tables, run the SQL from `supabase/rls.sql` in the SQL Editor
-2. This will set up all the necessary RLS policies for your application
-
-## Auth Triggers Setup
-
-1. Run the SQL from `supabase/auth-triggers.sql` in the SQL Editor
-2. This sets up automatic profile creation when users sign up
+2. Run the migration files in numerical order from the `supabase/migrations` directory:
+   - `001_create_tables.sql` - Creates all tables and indexes
+   - `002_enable_rls.sql` - Enables Row Level Security on all tables
+   - `003_create_policies.sql` - Creates RLS policies for data protection
+   - `004_create_triggers.sql` - Creates authentication triggers
+   - `005_insert_seed_data.sql` - Inserts initial seed data
 
 ## Storage Setup
 

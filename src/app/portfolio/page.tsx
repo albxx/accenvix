@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase/client'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 export default function PortfolioPage() {
   const [projects, setProjects] = useState<any[]>([])
@@ -54,7 +56,7 @@ export default function PortfolioPage() {
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
-                <div key={project.id} className="bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                <Card key={project.id} hoverEffect className="h-full flex flex-col">
                   <div className="h-48 bg-gray-200 overflow-hidden">
                     {project.image_url ? (
                       <img
@@ -70,9 +72,9 @@ export default function PortfolioPage() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-grow">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-4 flex-grow">
                       {project.description || 'No description available for this project.'}
                     </p>
                     {project.link && (
@@ -80,13 +82,16 @@ export default function PortfolioPage() {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 font-medium"
+                        className="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
                       >
-                        View Project →
+                        View Project
+                        <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
                       </a>
                     )}
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           ) : (
@@ -102,11 +107,10 @@ export default function PortfolioPage() {
           <p className="text-lg text-gray-600 mb-6">
             Let's discuss how we can help bring your project to life.
           </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-          >
-            Start a Project
+          <a href="/contact">
+            <Button size="lg">
+              Start a Project
+            </Button>
           </a>
         </div>
       </div>

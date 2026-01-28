@@ -1,5 +1,5 @@
 -- ========================================
--- ROW LEVEL SECURITY POLICIES
+-- MIGRATION 003: CREATE RLS POLICIES
 -- ========================================
 
 -- Services table policies

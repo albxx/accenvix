@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import Link from 'next/link'
 import ProtectedRoute from '@/components/admin/protected-route'
+import { Input, TextArea } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 export default function AdminServices() {
   const [services, setServices] = useState<any[]>([])
@@ -126,6 +128,14 @@ export default function AdminServices() {
     setFormData({ title: '', description: '', icon_url: '' })
   }
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
@@ -169,44 +179,29 @@ export default function AdminServices() {
                 </h3>
                 <form onSubmit={editingService ? handleUpdateService : handleCreateService}>
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                    <div>
-                      <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                        Title
-                      </label>
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        required
-                        value={formData.title}
-                        onChange={(e) => setFormData({...formData, title: e.target.value})}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="icon_url" className="block text-sm font-medium text-gray-700">
-                        Icon URL
-                      </label>
-                      <input
-                        type="text"
-                        name="icon_url"
-                        id="icon_url"
-                        value={formData.icon_url}
-                        onChange={(e) => setFormData({...formData, icon_url: e.target.value})}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                      />
-                    </div>
+                    <Input
+                      label="Title"
+                      id="title"
+                      name="title"
+                      required
+                      value={formData.title}
+                      onChange={handleInputChange}
+                    />
+                    <Input
+                      label="Icon URL"
+                      id="icon_url"
+                      name="icon_url"
+                      value={formData.icon_url}
+                      onChange={handleInputChange}
+                    />
                     <div className="md:col-span-2">
-                      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                        Description
-                      </label>
-                      <textarea
+                      <TextArea
+                        label="Description"
                         id="description"
                         name="description"
                         rows={3}
                         value={formData.description}
-                        onChange={(e) => setFormData({...formData, description: e.target.value})}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        onChange={handleInputChange}
                       />
                     </div>
                   </div>
@@ -216,21 +211,20 @@ export default function AdminServices() {
                   )}
 
                   <div className="mt-6 flex space-x-3">
-                    <button
+                    <Button
                       type="submit"
-                      disabled={isSubmitting}
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                      isLoading={isSubmitting}
                     >
                       {isSubmitting ? (editingService ? 'Updating...' : 'Creating...') : (editingService ? 'Update Service' : 'Create Service')}
-                    </button>
+                    </Button>
                     {editingService && (
-                      <button
+                      <Button
                         type="button"
+                        variant="secondary"
                         onClick={handleCancelEdit}
-                        className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       >
                         Cancel
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </form>
