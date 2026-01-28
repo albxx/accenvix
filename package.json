@@ -1,0 +1,40 @@
+{
+  "name": "accenvix-portal",
+  "version": "1.0.0",
+  "description": "Professional company portal for Accenvix Solutions built with Next.js, TypeScript, Tailwind CSS, and Supabase",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup": "echo 'Please follow the setup instructions in README.md and run the SQL files in the supabase directory in order'"
+  },
+  "keywords": [
+    "nextjs",
+    "supabase",
+    "tailwindcss",
+    "typescript",
+    "company-portal",
+    "cms"
+  ],
+  "author": "Accenvix Solutions",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.93.2",
+    "@types/node": "^25.0.10",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}
