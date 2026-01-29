@@ -1,3 +1,8 @@
+/* 
+ * Tailwind CSS Directives
+ * These directives are processed by Tailwind CSS during the build process
+ * and will not appear in the final CSS output
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
