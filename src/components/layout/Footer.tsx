@@ -1,20 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Github } from "lucide-react";
-
-const footerLinks = {
-  company: [
-    { href: "/about", label: "About Us" },
-    { href: "/services", label: "Services" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/contact", label: "Contact" },
-  ],
-  services: [
-    { href: "/services#business-consulting", label: "Business Consulting" },
-    { href: "/services#professional-training", label: "Professional Training" },
-    { href: "/services#it-digital", label: "IT & Digital Transformation" },
-    { href: "/services#learning-support", label: "Learning Support" },
-  ],
-};
+import { useTranslation } from "react-i18next";
 
 const socialLinks = [
   { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
@@ -23,6 +9,23 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const { t } = useTranslation();
+
+  const footerLinks = {
+    company: [
+      { href: "/about", key: "footer.about" },
+      { href: "/services", key: "footer.services" },
+      { href: "/portfolio", key: "footer.portfolio" },
+      { href: "/contact", key: "footer.contact" },
+    ],
+    services: [
+      { href: "/services#business-consulting", key: "services.businessConsulting" },
+      { href: "/services#professional-training", key: "services.professionalTraining" },
+      { href: "/services#it-digital", key: "services.itDigital" },
+      { href: "/services#learning-support", key: "services.learningSupport" },
+    ],
+  };
+
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12 md:py-16">
@@ -38,7 +41,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
-              Empowering Skills, Delivering Solutions, Enabling Growth. Your trusted partner in professional services excellence.
+              {t('footer.brandDescription')}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -58,7 +61,7 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-display font-semibold text-foreground mb-4">Company</h3>
+            <h3 className="font-display font-semibold text-foreground mb-4">{t('footer.company')}</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -66,7 +69,7 @@ export function Footer() {
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -75,7 +78,7 @@ export function Footer() {
 
           {/* Services Links */}
           <div>
-            <h3 className="font-display font-semibold text-foreground mb-4">Services</h3>
+            <h3 className="font-display font-semibold text-foreground mb-4">{t('footer.services')}</h3>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
@@ -83,7 +86,7 @@ export function Footer() {
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 </li>
               ))}
@@ -92,7 +95,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-display font-semibold text-foreground mb-4">Contact</h3>
+            <h3 className="font-display font-semibold text-foreground mb-4">{t('contact.contactInfo')}</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -125,14 +128,14 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Accenvix Solutions. All rights reserved.
+            © {new Date().getFullYear()} Accenvix Solutions. {t('footer.rightsReserved')}
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </Link>
             <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
+              {t('footer.termsOfService')}
             </Link>
           </div>
         </div>

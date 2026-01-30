@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
 const projects = [
   {
@@ -78,6 +79,81 @@ const projects = [
 ];
 
 export default function Portfolio() {
+  const { t } = useTranslation();
+
+  const projects = [
+    {
+      id: 1,
+      titleKey: "portfolio.edtechLearningPlatform",
+      client: "Malaysian Education Sector",
+      categoryKey: "portfolio.educationTech",
+      descriptionKey: "portfolio.edtechLearningPlatformDesc",
+      tags: ["Flutter", "Dart", "Firebase", "Mobile App", "Education"],
+      image: "/portfolio/edtech-platform.svg",
+      altKey: "portfolio.edtechLearningPlatform",
+    },
+    {
+      id: 2,
+      titleKey: "portfolio.eCommercePlatform",
+      client: "RetailMax Inc.",
+      categoryKey: "portfolio.webDevelopment",
+      descriptionKey: "portfolio.eCommercePlatformDesc",
+      tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
+      image: "/portfolio/ecommerce-platform.svg",
+      altKey: "portfolio.eCommercePlatform",
+    },
+    {
+      id: 3,
+      titleKey: "portfolio.healthcareManagement",
+      client: "MediCare Solutions",
+      categoryKey: "portfolio.enterpriseSoftware",
+      descriptionKey: "portfolio.healthcareManagementDesc",
+      tags: ["Angular", "Python", "MongoDB", "AWS"],
+      image: "/portfolio/healthcare-dashboard.svg",
+      altKey: "portfolio.healthcareManagement",
+    },
+    {
+      id: 4,
+      titleKey: "portfolio.fintechMobileApp",
+      client: "QuickPay Finance",
+      categoryKey: "portfolio.mobileDevelopment",
+      descriptionKey: "portfolio.fintechMobileAppDesc",
+      tags: ["React Native", "Firebase", "Node.js"],
+      image: "/portfolio/fintech-app.svg",
+      altKey: "portfolio.fintechMobileApp",
+    },
+    {
+      id: 5,
+      titleKey: "portfolio.logisticsDashboard",
+      client: "GlobalShip Ltd.",
+      categoryKey: "portfolio.cloudSolutions",
+      descriptionKey: "portfolio.logisticsDashboardDesc",
+      tags: ["Vue.js", "Go", "Redis", "Google Cloud"],
+      image: "/portfolio/logistics-dashboard.svg",
+      altKey: "portfolio.logisticsDashboard",
+    },
+    {
+      id: 6,
+      titleKey: "portfolio.edtechLearningPlatform2",
+      client: "LearnSmart Academy",
+      categoryKey: "portfolio.webDevelopment",
+      descriptionKey: "portfolio.edtechLearningPlatformDesc",
+      tags: ["Next.js", "PostgreSQL", "WebRTC", "Vercel"],
+      image: "/portfolio/edtech-platform.svg",
+      altKey: "portfolio.edtechLearningPlatform2",
+    },
+    {
+      id: 7,
+      titleKey: "portfolio.iotDashboard",
+      client: "SmartFactory Corp.",
+      categoryKey: "portfolio.enterpriseSoftware",
+      descriptionKey: "portfolio.iotDashboardDesc",
+      tags: ["React", "Python", "InfluxDB", "Azure"],
+      image: "/portfolio/iot-dashboard.svg",
+      altKey: "portfolio.iotDashboard",
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -86,10 +162,10 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
-              Our <span className="text-gradient">Portfolio</span>
+              {t('portfolio.pageTitle')} <span className="text-gradient">{t('portfolio.titleHighlight')}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              Explore our recent projects from Accenvix Solutions and see how we've helped businesses, government organizations, and individual learners achieve their professional development goals.
+              {t('portfolio.pageSubtitle')}
             </p>
           </div>
         </div>
@@ -108,13 +184,13 @@ export default function Portfolio() {
                 <div className="aspect-video relative overflow-hidden">
                   <img 
                     src={project.image} 
-                    alt={project.alt}
+                    alt={t(project.altKey)}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                   <div className="absolute bottom-4 left-4">
                     <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
-                      {project.category}
+                      {t(project.categoryKey)}
                     </Badge>
                   </div>
                 </div>
@@ -122,13 +198,13 @@ export default function Portfolio() {
                 {/* Project Content */}
                 <div className="p-6">
                   <h3 className="font-display text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {project.title}
+                    {t(project.titleKey)}
                   </h3>
                   <p className="text-sm text-primary font-medium mb-3">
                     {project.client}
                   </p>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {project.description}
+                    {t(project.descriptionKey)}
                   </p>
 
                   {/* Tags */}
@@ -145,7 +221,7 @@ export default function Portfolio() {
 
                   {/* View Project Link */}
                   <button className="inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all duration-300">
-                    View Details
+                    {t('common.viewDetails')}
                     <ExternalLink size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 </div>
@@ -161,14 +237,14 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Want to See Your <span className="text-gradient">Project Here?</span>
+              {t('portfolio.wantToSeeProject')} <span className="text-gradient">{t('portfolio.projectHighlight')}</span>
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Whether you're a corporate enterprise, government organization, or individual learner, we're ready to help you achieve your professional development goals. Contact us to discuss your next project.
+              {t('portfolio.wantToSeeProjectDesc')}
             </p>
             <Button asChild size="lg" className="gradient-primary hover:opacity-90 transition-opacity">
               <Link to="/contact">
-                Start Your Project
+                {t('portfolio.startYourProject')}
                 <ArrowRight className="ml-2" size={20} />
               </Link>
             </Button>

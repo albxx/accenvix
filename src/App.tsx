@@ -10,6 +10,9 @@ import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// Import i18n configuration
+import './lib/i18n';
+
 const queryClient = new QueryClient();
 
 const App = () => (

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface FormData {
   name: string;
@@ -17,31 +18,31 @@ interface FormData {
 const contactInfo = [
   {
     icon: Mail,
-    title: "Email",
+    titleKey: "contact.email",
     value: "hello@accenvix.com",
     href: "mailto:hello@accenvix.com",
   },
   {
     icon: Phone,
-    title: "Phone",
+    titleKey: "contact.phone",
     value: "+60 13 991 5339",
     href: "tel:+60139915339",
   },
   {
     icon: MapPin,
-    title: "Address",
+    titleKey: "contact.address",
     value: "11-02 Imperia, No 1 Jalan Laksamana, 79000 Iskandar Puteri, Johor, Malaysia",
     href: null,
   },
   {
     icon: Clock,
-    title: "Business Hours",
-    value: "Mon - Fri: 9AM - 6PM MYT",
+    titleKey: "contact.businessHours",
     href: null,
   },
 ];
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -91,10 +92,10 @@ export default function Contact() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
-              Get in <span className="text-gradient">Touch</span>
+              {t('contact.pageTitle')} <span className="text-gradient">{t('contact.titleHighlight')}</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              Ready to start your next project with Accenvix Solutions? We'd love to hear from you. Send us a message and we'll respond as soon as possible to discuss how we can help transform your ideas into reality.
+              {t('contact.pageSubtitle')}
             </p>
           </div>
         </div>
@@ -108,7 +109,7 @@ export default function Contact() {
             <div className="lg:col-span-3">
               <div className="bg-card border border-border rounded-2xl p-8">
                 <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                  Send Us a Message
+                  {t('contact.sendMessage')}
                 </h2>
 
                 {isSubmitted ? (
@@ -117,21 +118,21 @@ export default function Contact() {
                       <CheckCircle className="text-primary-foreground" size={32} />
                     </div>
                     <h3 className="font-display text-xl font-bold text-foreground mb-2">
-                      Thank You!
+                      {t('contact.thankYou')}
                     </h3>
                     <p className="text-muted-foreground">
-                      Your message has been sent successfully. We'll get back to you soon.
+                      {t('contact.messageSent')}
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">{t('contact.fullName')}</Label>
                         <Input
                           id="name"
                           name="name"
-                          placeholder="John Doe"
+                          placeholder={t('contact.fullName')}
                           value={formData.name}
                           onChange={handleChange}
                           required
@@ -139,12 +140,12 @@ export default function Contact() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email">{t('contact.emailAddress')}</Label>
                         <Input
                           id="email"
                           name="email"
                           type="email"
-                          placeholder="john@example.com"
+                          placeholder={t('contact.emailAddress')}
                           value={formData.email}
                           onChange={handleChange}
                           required
@@ -153,11 +154,11 @@ export default function Contact() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
+                      <Label htmlFor="subject">{t('contact.subject')}</Label>
                       <Input
                         id="subject"
                         name="subject"
-                        placeholder="Project Inquiry"
+                        placeholder={t('contact.subject')}
                         value={formData.subject}
                         onChange={handleChange}
                         required
@@ -165,11 +166,11 @@ export default function Contact() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message">{t('contact.message')}</Label>
                       <Textarea
                         id="message"
                         name="message"
-                        placeholder="Tell us about your project..."
+                        placeholder={t('contact.messagePlaceholder')}
                         value={formData.message}
                         onChange={handleChange}
                         required
@@ -186,12 +187,12 @@ export default function Contact() {
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
                           <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                          Sending...
+                          {t('common.loading')}
                         </span>
                       ) : (
                         <span className="flex items-center gap-2">
                           <Send size={18} />
-                          Send Message
+                          {t('common.send')}
                         </span>
                       )}
                     </Button>
@@ -204,7 +205,7 @@ export default function Contact() {
             <div className="lg:col-span-2">
               <div className="space-y-6">
                 <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                  Contact Information
+                  {t('contact.contactInfo')}
                 </h2>
 
                 <div className="space-y-4">
@@ -217,7 +218,7 @@ export default function Contact() {
                         <info.icon className="text-primary-foreground" size={20} />
                       </div>
                       <div>
-                        <h3 className="font-medium text-foreground mb-1">{info.title}</h3>
+                        <h3 className="font-medium text-foreground mb-1">{t(info.titleKey)}</h3>
                         {info.href ? (
                           <a
                             href={info.href}
@@ -226,7 +227,7 @@ export default function Contact() {
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-sm text-muted-foreground">{info.value}</p>
+                          <p className="text-sm text-muted-foreground">{t('contact.hours')}</p>
                         )}
                       </div>
                     </div>
@@ -240,7 +241,7 @@ export default function Contact() {
                       <div className="text-center">
                         <MapPin className="mx-auto mb-2 text-muted-foreground" size={32} />
                         <p className="text-sm text-muted-foreground">
-                          Map integration coming soon
+                          {t('contact.mapIntegrationComingSoon')}
                         </p>
                       </div>
                     </div>

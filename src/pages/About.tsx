@@ -1,6 +1,7 @@
 import { Users, Target, Eye, Award, Rocket, Heart, Shield, Lightbulb } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "react-i18next";
 
 const values = [
   {
@@ -64,6 +65,41 @@ const team = [
 ];
 
 export default function About() {
+  const { t } = useTranslation();
+
+  const values = [
+    {
+      icon: Award,
+      titleKey: "about.excellence",
+      descriptionKey: "about.excellenceDesc",
+    },
+    {
+      icon: Rocket,
+      titleKey: "about.innovation",
+      descriptionKey: "about.innovationDesc",
+    },
+    {
+      icon: Heart,
+      titleKey: "about.integrity",
+      descriptionKey: "about.integrityDesc",
+    },
+    {
+      icon: Users,
+      titleKey: "about.collaboration",
+      descriptionKey: "about.collaborationDesc",
+    },
+    {
+      icon: Shield,
+      titleKey: "about.trust",
+      descriptionKey: "about.trustDesc",
+    },
+    {
+      icon: Lightbulb,
+      titleKey: "about.growth",
+      descriptionKey: "about.growthDesc",
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -72,10 +108,10 @@ export default function About() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
-              About <span className="text-gradient">Accenvix Solutions</span>
+              {t('about.pageTitle')}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              We're a passionate team of tech enthusiasts dedicated to building innovative solutions that empower businesses to thrive in the digital age.
+              {t('about.pageSubtitle')}
             </p>
           </div>
         </div>
@@ -87,39 +123,39 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Our <span className="text-gradient">Story</span>
+                {t('about.our')} <span className="text-gradient">{t('about.storyHighlight')}</span>
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded in 2025, Accenvix Solutions is a professional services firm focused on capacity building, business transformation, and learning innovation. We bridge the gap between skills development, technology enablement, and practical business application.
+                  {t('about.storyContent1')}
                 </p>
                 <p>
-                  Based in Johor Bahru, Malaysia, we're supported by a leadership and consulting team with more than 15 years of combined experience across Information Technology (IT), business and financial consulting, and learning development.
+                  {t('about.storyContent2')}
                 </p>
                 <p>
-                  By combining strategic thinking, practical execution, and technology-enabled learning, we deliver integrated solutions that support professional services excellence, talent sustainability, and long-term business performance.
+                  {t('about.storyContent3')}
                 </p>
                 <p>
-                  Our commitment extends beyond individual projects to building enduring relationships that support continuous improvement and sustained competitive advantage.
+                  {t('about.storyContent4')}
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">2025</div>
-                <div className="text-sm text-muted-foreground">Founded</div>
+                <div className="text-sm text-muted-foreground">{t('about.founded')}</div>
               </div>
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">50+</div>
-                <div className="text-sm text-muted-foreground">Clients Served</div>
+                <div className="text-sm text-muted-foreground">{t('stats.happyClients')}</div>
               </div>
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">150+</div>
-                <div className="text-sm text-muted-foreground">Projects Completed</div>
+                <div className="text-sm text-muted-foreground">{t('stats.projectsCompleted')}</div>
               </div>
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">5+</div>
-                <div className="text-sm text-muted-foreground">Team Members</div>
+                <div className="text-sm text-muted-foreground">{t('about.teamMembers')}</div>
               </div>
             </div>
           </div>
@@ -135,12 +171,12 @@ export default function About() {
                 <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center mb-6 group-hover:shadow-glow transition-all duration-300">
                   <Target className="text-primary-foreground" size={28} />
                 </div>
-                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Mission</h3>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">{t('about.mission')}</h3>
                 <p className="text-muted-foreground">
-                  Accenvix Solutions is committed to delivering high-quality, industry-aligned training and consulting services that enhance professional services performance through continuous skills transformation and digital adoption.
+                  {t('about.missionContent')}
                 </p>
                 <p className="text-muted-foreground mt-2">
-                  We empower individuals with practical, relevant, and applicable knowledge while building long-term partnerships grounded in trust, professionalism, and measurable outcomes.
+                  {t('about.missionContent2')}
                 </p>
               </CardContent>
             </Card>
@@ -149,9 +185,9 @@ export default function About() {
                 <div className="w-14 h-14 rounded-xl gradient-accent flex items-center justify-center mb-6 group-hover:shadow-glow transition-all duration-300">
                   <Eye className="text-accent-foreground" size={28} />
                 </div>
-                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Vision</h3>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">{t('about.vision')}</h3>
                 <p className="text-muted-foreground">
-                  To be a trusted strategic partner in professional training, business consulting, and technology-enabled learning, recognised for quality, integrity, and long-term impact.
+                  {t('about.visionContent')}
                 </p>
               </CardContent>
             </Card>
@@ -164,10 +200,10 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Core <span className="text-gradient">Values</span>
+              {t('about.coreValues')} <span className="text-gradient">{t('about.valuesHighlight')}</span>
             </h2>
             <p className="text-muted-foreground">
-              The principles that guide everything we do.
+              {t('about.valuesDescription')}
             </p>
           </div>
 
@@ -179,10 +215,10 @@ export default function About() {
                     <value.icon className="text-primary-foreground" size={28} />
                   </div>
                   <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                    {value.title}
+                    {t(value.titleKey)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {value.description}
+                    {t(value.descriptionKey)}
                   </p>
                 </CardContent>
               </Card>

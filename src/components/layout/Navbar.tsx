@@ -3,16 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", key: "navigation.home" },
+  { href: "/about", key: "navigation.about" },
+  { href: "/services", key: "navigation.services" },
+  { href: "/portfolio", key: "navigation.portfolio" },
+  { href: "/contact", key: "navigation.contact" },
 ];
 
 export function Navbar() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -28,7 +31,7 @@ export function Navbar() {
               <span className="text-primary-foreground font-display font-bold text-xl">A</span>
             </div>
             <span className="font-display font-bold text-xl text-foreground group-hover:text-primary transition-colors duration-300">
-              Accenvix Solutions
+              {t('common.accenvixSolutions')}
             </span>
           </Link>
 
@@ -45,26 +48,30 @@ export function Navbar() {
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
-                {link.label}
+                {t(link.key)}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Language Switcher and CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             <Button asChild className="gradient-primary hover:opacity-90 hover:shadow-glow transition-all duration-300 hover-lift">
-              <Link to="/contact">Get Started</Link>
+              <Link to="/contact">{t('navigation.getStarted')}</Link>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors duration-300 hover:shadow-glow rounded-lg"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            {isOpen ? <X size={24} className="transition-transform duration-300" /> : <Menu size={24} className="transition-transform duration-300" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground hover:text-primary transition-colors duration-300 hover:shadow-glow rounded-lg"
+              aria-label={isOpen ? t('common.close') : t('common.open')}
+            >
+              {isOpen ? <X size={24} className="transition-transform duration-300" /> : <Menu size={24} className="transition-transform duration-300" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -83,12 +90,12 @@ export function Navbar() {
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               ))}
               <Button asChild className="gradient-primary hover:opacity-90 mt-2">
                 <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  Get Started
+                  {t('navigation.getStarted')}
                 </Link>
               </Button>
             </div>

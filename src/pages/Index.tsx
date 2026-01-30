@@ -1,61 +1,66 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Building, GraduationCap, Laptop, Users, Award, Clock, Target, Quote, Star, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowRight, Building, GraduationCap, Laptop, Users, Award, Clock, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Layout } from "@/components/layout";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 
-const services = [
-  {
-    icon: Building,
-    title: "Business & Financial Consulting",
-    description: "Strategic planning, operational excellence, and cost optimization solutions.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Professional Training & Skill Development",
-    description: "Comprehensive training programs for professional services skill gaps.",
-  },
-  {
-    icon: Laptop,
-    title: "IT Consulting & Digital Transformation",
-    description: "Technology advisory and implementation coordination for digital workflows.",
-  },
-  {
-    icon: Users,
-    title: "Learning & Academic Support",
-    description: "Academic tutoring, coaching, and structured learning pathways.",
-  },
-];
 
-const stats = [
-  { value: "150+", label: "Projects Completed" },
-  { value: "50+", label: "Happy Clients" },
-  { value: "10+", label: "Years Experience" },
-  { value: "99%", label: "Client Satisfaction" },
-];
 
-const features = [
-  {
-    icon: Users,
-    title: "Expert Team",
-    description: "Our skilled professionals bring years of industry experience.",
-  },
-  {
-    icon: Award,
-    title: "Quality Focused",
-    description: "We deliver excellence in every project we undertake.",
-  },
-  {
-    icon: Clock,
-    title: "On-Time Delivery",
-    description: "We respect deadlines and deliver projects as promised.",
-  },
-];
 
 export default function Index() {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: Building,
+      titleKey: "services.businessConsulting",
+      descriptionKey: "services.businessConsultingDesc",
+    },
+    {
+      icon: GraduationCap,
+      titleKey: "services.professionalTraining",
+      descriptionKey: "services.professionalTrainingDesc",
+    },
+    {
+      icon: Laptop,
+      titleKey: "services.itDigital",
+      descriptionKey: "services.itDigitalDesc",
+    },
+    {
+      icon: Users,
+      titleKey: "services.learningSupport",
+      descriptionKey: "services.learningSupportDesc",
+    },
+  ];
+
+  const stats = [
+    { value: "150+", labelKey: "stats.projectsCompleted" },
+    { value: "50+", labelKey: "stats.happyClients" },
+    { value: "10+", labelKey: "stats.yearsExperience" },
+    { value: "99%", labelKey: "stats.clientSatisfaction" },
+  ];
+
+  const features = [
+    {
+      icon: Users,
+      titleKey: "about.excellence",
+      descriptionKey: "about.excellenceDesc",
+    },
+    {
+      icon: Award,
+      titleKey: "about.innovation",
+      descriptionKey: "about.innovationDesc",
+    },
+    {
+      icon: Clock,
+      titleKey: "about.trust",
+      descriptionKey: "about.trustDesc",
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -74,29 +79,29 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
               <div className="inline-block px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6 animate-fade-in">
-                🚀 Transforming Ideas into Digital Reality
+                🚀 {t('homepage.heroTagline')}
               </div>
               
               <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-slide-up">
-                We Build{" "}
-                <span className="text-gradient">Innovative</span>
+                {t('homepage.heroTitle')}{" "}
+                <span className="text-gradient">{t('homepage.heroTitleHighlight')}</span>
                 <br />
-                Tech Solutions
+                {t('homepage.heroTitleSecondLine')}
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                Accenvix Solutions empowers individuals and organizations with professional training, business consulting, and technology-enabled learning services. We bridge the gap between skills development and practical business application.
+                {t('homepage.heroSubtitle')}
               </p>
               
               <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
                 <Button asChild size="lg" className="gradient-primary hover:opacity-90 transition-opacity text-lg px-8">
                   <Link to="/contact">
-                    Get Started
+                    {t('navigation.getStarted')}
                     <ArrowRight className="ml-2" size={20} />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-lg px-8">
-                  <Link to="/services">Our Services</Link>
+                  <Link to="/services">{t('homepage.ourServices')}</Link>
                 </Button>
               </div>
             </div>
@@ -120,12 +125,12 @@ export default function Index() {
                       <Users className="w-8 h-8 text-accent" />
                     </div>
                   </div>
-                  <div className="mt-6 text-center">
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                      <Award className="w-4 h-4 mr-1" />
-                      Trusted by 50+ Clients
-                    </div>
-                  </div>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                  <Award className="w-4 h-4 mr-1" />
+                  {t('homepage.trustedByClients')}
+                </div>
+              </div>
                 </div>
               </div>
             </div>
@@ -149,7 +154,7 @@ export default function Index() {
                 <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
               </div>
             ))}
           </div>
@@ -162,39 +167,39 @@ export default function Index() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Your Trusted Partner in{" "}
-                <span className="text-gradient">Professional Services</span>
+                {t('homepage.yourTrustedPartner')}{" "}
+                <span className="text-gradient">{t('homepage.professionalServices')}</span>
               </h2>
               <p className="text-muted-foreground mb-6">
-                Accenvix Solutions is a professional services firm focused on capacity building, business transformation, and learning innovation. We bridge the gap between skills development, technology enablement, and practical business application.
+                {t('about.storyContent1')}
               </p>
               <p className="text-muted-foreground mb-8">
-                Based in Johor Bahru, Malaysia, we're supported by a leadership and consulting team with more than 15 years of combined experience across Information Technology (IT), business and financial consulting, and learning development.
+                {t('about.storyContent2')}
               </p>
               
               {/* Key Values */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="flex items-center">
                   <Target className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">Innovation First</span>
+                  <span className="text-sm font-medium text-foreground">{t('homepage.innovationFirst')}</span>
                 </div>
                 <div className="flex items-center">
                   <Award className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">Quality Assured</span>
+                  <span className="text-sm font-medium text-foreground">{t('homepage.qualityAssured')}</span>
                 </div>
                 <div className="flex items-center">
                   <Users className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">Client Focused</span>
+                  <span className="text-sm font-medium text-foreground">{t('homepage.clientFocused')}</span>
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">On-Time Delivery</span>
+                  <span className="text-sm font-medium text-foreground">{t('homepage.onTimeDelivery')}</span>
                 </div>
               </div>
 
               <Button asChild variant="outline">
                 <Link to="/about">
-                  Learn More About Us
+                  {t('common.learnMore')}
                   <ArrowRight className="ml-2" size={16} />
                 </Link>
               </Button>
@@ -207,17 +212,17 @@ export default function Index() {
                     <span className="text-primary-foreground font-display font-bold text-4xl">A</span>
                   </div>
                   <h3 className="font-display text-2xl font-bold text-foreground mb-2">Accenvix Solutions</h3>
-                  <p className="text-muted-foreground mb-4">Innovation Meets Excellence</p>
+                  <p className="text-muted-foreground mb-4">{t('homepage.innovationMeetsExcellence')}</p>
                   
                   {/* Stats Preview */}
                   <div className="grid grid-cols-2 gap-4 mt-6">
                     <div className="text-center">
                       <div className="font-display text-xl font-bold text-gradient">150+</div>
-                      <div className="text-xs text-muted-foreground">Projects</div>
+                      <div className="text-xs text-muted-foreground">{t('stats.projectsCompletedShort')}</div>
                     </div>
                     <div className="text-center">
                       <div className="font-display text-xl font-bold text-gradient">50+</div>
-                      <div className="text-xs text-muted-foreground">Clients</div>
+                      <div className="text-xs text-muted-foreground">{t('stats.happyClientsShort')}</div>
                     </div>
                   </div>
                 </div>
@@ -236,10 +241,10 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our <span className="text-gradient">Services</span>
+              {t('homepage.servicesHighlight')} <span className="text-gradient">{t('homepage.ourServices')}</span>
             </h2>
             <p className="text-muted-foreground">
-              Comprehensive tech solutions tailored to your business needs.
+              {t('homepage.comprehensiveSolutions')}
             </p>
           </div>
 
@@ -251,10 +256,10 @@ export default function Index() {
                     <service.icon className="text-primary-foreground" size={24} />
                   </div>
                   <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                    {service.title}
+                    {t(service.titleKey)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {service.description}
+                    {t(service.descriptionKey)}
                   </p>
                 </CardContent>
               </Card>
@@ -264,7 +269,7 @@ export default function Index() {
           <div className="text-center mt-12">
             <Button asChild variant="outline">
               <Link to="/services">
-                View All Services
+                {t('common.viewAll')} {t('homepage.ourServices')}
                 <ArrowRight className="ml-2" size={16} />
               </Link>
             </Button>
@@ -277,10 +282,10 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Featured <span className="text-gradient">Projects</span>
+              {t('homepage.featuredProjects')} <span className="text-gradient">{t('homepage.projectsHighlight')}</span>
             </h2>
             <p className="text-muted-foreground">
-              Explore some of our recent success stories and innovative solutions.
+              {t('homepage.exploreSuccessStories')}
             </p>
           </div>
 
@@ -290,19 +295,19 @@ export default function Index() {
                 <Card className="group hover-lift bg-card border-border overflow-hidden">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src="/portfolio/edtech-platform.svg" 
-                      alt="EduSync School Management System"
+                      src="/portfolio/ecommerce-platform.svg" 
+                      alt={t('portfolio.webDevelopment')}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                   </div>
                   <CardContent className="p-6">
-                    <Badge variant="secondary" className="mb-2">Educational Technology</Badge>
+                    <Badge variant="secondary" className="mb-2">{t('portfolio.educationTech')}</Badge>
                     <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      EduSync School Management System
+                      {t('portfolio.edtechLearningPlatform')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Comprehensive school management system for Malaysian schools built with Flutter.
+                      {t('portfolio.edtechLearningPlatformDesc')}
                     </p>
                   </CardContent>
                 </Card>
@@ -312,18 +317,18 @@ export default function Index() {
                   <div className="aspect-video relative overflow-hidden">
                     <img 
                       src="/portfolio/ecommerce-platform.svg" 
-                      alt="E-Commerce Platform"
+                      alt={t('portfolio.webDevelopment')}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                   </div>
                   <CardContent className="p-6">
-                    <Badge variant="secondary" className="mb-2">Web Development</Badge>
+                    <Badge variant="secondary" className="mb-2">{t('portfolio.webDevelopment')}</Badge>
                     <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      E-Commerce Platform
+                      {t('portfolio.edtechLearningPlatform')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Full-featured e-commerce platform with real-time inventory management.
+                      {t('portfolio.edtechLearningPlatformDesc')}
                     </p>
                   </CardContent>
                 </Card>
@@ -333,18 +338,18 @@ export default function Index() {
                   <div className="aspect-video relative overflow-hidden">
                     <img 
                       src="/portfolio/healthcare-dashboard.svg" 
-                      alt="Healthcare Management System"
+                      alt={t('portfolio.enterpriseSoftware')}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                   </div>
                   <CardContent className="p-6">
-                    <Badge variant="secondary" className="mb-2">Enterprise Software</Badge>
+                    <Badge variant="secondary" className="mb-2">{t('portfolio.enterpriseSoftware')}</Badge>
                     <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      Healthcare Management System
+                      {t('portfolio.iotDashboard')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      Comprehensive healthcare management system for patient records.
+                      {t('portfolio.iotDashboardDesc')}
                     </p>
                   </CardContent>
                 </Card>
@@ -357,7 +362,7 @@ export default function Index() {
           <div className="text-center mt-12">
             <Button asChild variant="outline">
               <Link to="/portfolio">
-                View Full Portfolio
+                {t('homepage.viewFullPortfolio')}
                 <ArrowRight className="ml-2" size={16} />
               </Link>
             </Button>
@@ -637,11 +642,11 @@ export default function Index() {
               <span className="text-gradient">Next Project?</span>
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Let's discuss how Accenvix Solutions can help transform your ideas into reality. Get in touch today for a free consultation.
+              {t('homepage.contactCTADescription')}
             </p>
             <Button asChild size="lg" className="gradient-primary hover:opacity-90 transition-opacity text-lg px-8">
               <Link to="/contact">
-                Contact Us Today
+                {t('common.contactUs')}
                 <ArrowRight className="ml-2" size={20} />
               </Link>
             </Button>
