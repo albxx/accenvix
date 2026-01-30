@@ -1,176 +1,219 @@
-# Accenvix Solutions Portal
+# AccEnvix Solutions Website
 
-A professional company portal built with Next.js, TypeScript, Tailwind CSS, and Supabase.
+Professional training, business consulting, and digital transformation services website built with modern web technologies.
 
-## Features
+## 🚀 Features
 
-- **Public Pages**: Home, About, Services, Portfolio, and Contact pages
-- **Authentication**: User registration and login with Supabase Auth
-- **Admin Dashboard**: Protected admin area for managing content
-- **Content Management**: CRUD operations for services and projects
-- **Contact Form**: Visitors can send messages stored in Supabase
-- **Responsive Design**: Mobile-friendly interface with Tailwind CSS
-- **Security**: Row Level Security (RLS) policies for data protection
+- **Modern Tech Stack**: React 18 + TypeScript + Vite
+- **Styling**: TailwindCSS with ShadCN UI components
+- **Routing**: React Router for SPA navigation
+- **State Management**: TanStack Query for data fetching
+- **Responsive Design**: Mobile-first approach
+- **Performance Optimized**: Fast loading and smooth interactions
 
-## Tech Stack
-
-- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **Backend**: Supabase (Auth, Database, Storage)
-- **Deployment**: Vercel (frontend), Supabase (backend)
-
-## Prerequisites
-
-- Node.js 18+
-- npm or yarn
-- Supabase account
-
-## Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
-cd accenvix-portal
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Set Up Supabase
-
-1. Create a new Supabase project at [https://app.supabase.io](https://app.supabase.io)
-2. Navigate to the SQL Editor in your Supabase dashboard
-3. Run the migration files in numerical order from the `supabase/migrations` directory:
-   - `001_create_tables.sql` - Creates all tables and indexes
-   - `002_enable_rls.sql` - Enables Row Level Security on all tables
-   - `003_create_policies.sql` - Creates RLS policies for data protection
-   - `004_create_triggers.sql` - Creates authentication triggers
-   - `005_insert_seed_data.sql` - Inserts initial seed data
-4. Create storage buckets:
-   - `project-images` for portfolio images
-   - `service-icons` for service icons
-   - Set both buckets to allow public read access
-
-### 4. Configure Environment Variables
-
-Copy the `.env.example` file to `.env.local`:
-
-```bash
-cp .env.example .env.local
-```
-
-Fill in your Supabase credentials:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-You can find these values in your Supabase project settings under "API".
-
-### 5. Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages and layouts
-│   ├── admin/          # Admin dashboard pages
-│   ├── api/            # API routes
-│   └── ...             # Public pages (home, about, etc.)
-├── components/         # Reusable React components
-│   ├── admin/          # Admin-specific components
-│   ├── auth/           # Authentication components
-│   └── ...             # Shared components
-├── context/            # React context providers
-├── lib/                # Utility functions and Supabase client
-│   └── supabase/       # Supabase client and helper functions
-└── types/              # TypeScript type definitions
-
-supabase/
-├── schema.sql          # Database schema
-├── rls.sql             # Row Level Security policies
-├── auth-triggers.sql   # Authentication triggers
-├── seed.sql            # Sample data
-└── setup-guide.md      # Detailed Supabase setup guide
-
-public/                 # Static assets
-├── icons/              # Service icons
-└── projects/           # Project images
+├── components/          # Reusable UI components
+│   ├── layout/          # Layout components (Navbar, Footer)
+│   ├── ui/             # ShadCN UI components
+│   └── NavLink.tsx     # Navigation component
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions
+├── pages/              # Page components
+│   ├── Index.tsx       # Home page
+│   ├── About.tsx       # About page
+│   ├── Services.tsx    # Services page
+│   ├── Portfolio.tsx   # Portfolio page
+│   ├── Contact.tsx     # Contact page
+│   └── NotFound.tsx    # 404 page
+├── App.tsx             # Main app component with routing
+├── main.tsx           # Entry point
+└── index.css          # Global styles
 ```
 
-## Supabase Setup Guide
+## 🛠️ Getting Started
 
-For detailed Supabase setup instructions, see `supabase/setup-guide.md`.
+### Prerequisites
 
-## Deployment
+- Node.js 16+ or Bun runtime
+- npm or bun package manager
 
-### Deploy to Vercel
+### Installation
 
-1. Push your code to a GitHub repository
-2. Go to [Vercel](https://vercel.com) and create a new project
-3. Connect your GitHub repository
-4. Set the environment variables in Vercel project settings:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-5. Deploy!
+```bash
+# Clone the repository
+git clone git@github.com:albxx/accenvix.git
+cd accenvix
 
-### Supabase Production Setup
+# Install dependencies
+npm install
+# or
+bun install
+```
 
-Make sure to:
-1. Configure your production Supabase project with the same schema
-2. Set up the storage buckets with appropriate permissions
-3. Configure your domain in Supabase auth settings
+### Development
 
-## Available Scripts
+```bash
+# Start development server
+npm run dev
+# or
+bun run dev
 
-- `npm run dev` - Runs the app in development mode
-- `npm run build` - Builds the app for production
-- `npm run start` - Runs the built app in production mode
-- `npm run lint` - Runs ESLint to check for issues
+# Visit http://localhost:8080
+```
 
-## Environment Variables
+### Building for Production
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Yes |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key | Yes |
+```bash
+# Create production build
+npm run build
+# or
+bun run build
 
-## Database Schema
+# Preview production build
+npm run preview
+# or
+bun run preview
+```
 
-The application uses the following tables:
+## ☁️ Deployment to Vercel
 
-- `services` - Company services with title, description, and icon
-- `projects` - Portfolio projects with title, description, image, and link
-- `contact_messages` - Visitor contact form submissions
-- `profiles` - User profiles with role information (public or admin)
-- `settings` - Site configuration settings
+### Method 1: Vercel CLI (Recommended)
 
-## Row Level Security
+1. **Install Vercel CLI**
+   ```bash
+   npm install -g vercel
+   # or
+   yarn global add vercel
+   ```
 
-RLS policies ensure:
-- Public users can view services and projects
-- Public users can submit contact messages
-- Admin users have full access to all tables
-- Users can only view their own profile
+2. **Login to Vercel**
+   ```bash
+   vercel login
+   ```
 
-## Contributing
+3. **Deploy**
+   ```bash
+   # For first deployment
+   vercel
+   
+   # For subsequent deployments to production
+   vercel --prod
+   ```
+
+### Method 2: GitHub Integration
+
+1. Push your code to GitHub
+2. Go to [Vercel Dashboard](https://vercel.com/dashboard)
+3. Click "New Project"
+4. Import your GitHub repository
+5. Configure settings:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+   - **Install Command**: `npm install`
+6. Click "Deploy"
+
+### Method 3: Manual Deployment
+
+1. **Build the project**
+   ```bash
+   npm run build
+   ```
+
+2. **Upload the `dist` folder** to Vercel manually through the dashboard
+
+### Vercel Configuration
+
+The project works with Vercel's default settings:
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist/`
+- **Install Command**: `npm install`
+
+No additional configuration file is needed for basic deployment.
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm run test
+# or
+bun run test
+
+# Run tests in watch mode
+npm run test:watch
+# or
+bun run test:watch
+```
+
+## 📝 Scripts
+
+- `dev` - Start development server
+- `build` - Create production build
+- `build:dev` - Create development build
+- `lint` - Run ESLint
+- `preview` - Preview production build
+- `test` - Run test suite
+- `test:watch` - Run tests in watch mode
+
+## 🎨 Technologies Used
+
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: TailwindCSS, ShadCN UI
+- **Routing**: React Router DOM
+- **State Management**: TanStack Query
+- **UI Components**: Radix UI primitives
+- **Testing**: Vitest, Testing Library
+- **Code Quality**: ESLint, Prettier
+
+## 🌐 Pages
+
+- `/` - Home page
+- `/about` - About us
+- `/services` - Our services
+- `/portfolio` - Portfolio showcase
+- `/contact` - Contact form
+- `/*` - 404 Not Found
+
+## 🔧 Environment Variables
+
+Create a `.env.local` file in the root directory for environment variables:
+
+```bash
+# Example environment variables
+VITE_API_URL=https://api.example.com
+VITE_APP_NAME=AccEnvix Solutions
+```
+
+## 📈 Performance
+
+- Code splitting via dynamic imports
+- Tree shaking for unused code elimination
+- Image optimization strategies
+- Bundle size monitoring
+- Lazy loading for non-critical resources
+
+## 🔒 Security
+
+- XSS prevention through React's built-in escaping
+- Secure dependency management
+- Form validation and sanitization
+- Content Security Policy compliance
+
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a pull request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License.
+This project is proprietary software owned by AccEnvix Solutions.
+
+## 📞 Support
+
+For support, contact the development team or create an issue in the repository.

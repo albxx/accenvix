@@ -1,0 +1,234 @@
+import { Users, Target, Eye, Award, Rocket, Heart, Shield, Lightbulb } from "lucide-react";
+import { Layout } from "@/components/layout";
+import { Card, CardContent } from "@/components/ui/card";
+
+const values = [
+  {
+    icon: Award,
+    title: "Excellence",
+    description: "Uncompromising quality standards and structured delivery methodologies ensure consistently exceptional outcomes.",
+  },
+  {
+    icon: Rocket,
+    title: "Innovation",
+    description: "Embracing new technologies and creative solutions to solve complex business challenges.",
+  },
+  {
+    icon: Heart,
+    title: "Integrity",
+    description: "Operating with the highest standards of professional conduct and corporate responsibility.",
+  },
+  {
+    icon: Users,
+    title: "Collaboration",
+    description: "Building strategic partnerships with leading experts, certified trainers, and trusted partners.",
+  },
+  {
+    icon: Shield,
+    title: "Trust",
+    description: "Building enduring relationships grounded in professionalism and measurable outcomes.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Growth",
+    description: "Enabling sustainable and measurable growth through skills transformation and digital adoption.",
+  },
+];
+
+const team = [
+  {
+    name: "Ahmad Zakry Abadi Abu Bakar",
+    role: "Director, Strategic Operations",
+    bio: "Strong experience across IT systems development and infrastructure, business management, and organisational change management with training delivery.",
+  },
+  {
+    name: "Ungku Badhrul Hisham Ungku Abdul Rahim",
+    role: "Director, Sales & Marketing & Professional Trainer",
+    bio: "Extensive experience in the banking and financial sector, complemented by strong expertise in professional training and sales and marketing.",
+  },
+  {
+    name: "Diana Zainal",
+    role: "Consultant, Financial & Business Planning",
+    bio: "Experienced across various corporate sectors and industries, IT management and compliance, professional training, and sales and marketing.",
+  },
+  {
+    name: "Hj Mohd Hanizam Abdul Aziz",
+    role: "Consultant, Learning & Development",
+    bio: "Professional business & financial consultant with extensive exposure to the corporate sector, finance, and business development.",
+  },
+  {
+    name: "Mohd Albar Mohamed",
+    role: "Consultant, Technology Solution",
+    bio: "Solid experience in IT solutions and system development for both small-scale and enterprise-level environments.",
+  },
+];
+
+export default function About() {
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="py-20 md:py-28 gradient-hero relative overflow-hidden">
+        <div className="absolute inset-0 gradient-glow" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
+              About <span className="text-gradient">Accenvix Solutions</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              We're a passionate team of tech enthusiasts dedicated to building innovative solutions that empower businesses to thrive in the digital age.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Our <span className="text-gradient">Story</span>
+              </h2>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  Founded in 2025, Accenvix Solutions is a professional services firm focused on capacity building, business transformation, and learning innovation. We bridge the gap between skills development, technology enablement, and practical business application.
+                </p>
+                <p>
+                  Based in Johor Bahru, Malaysia, we're supported by a leadership and consulting team with more than 15 years of combined experience across Information Technology (IT), business and financial consulting, and learning development.
+                </p>
+                <p>
+                  By combining strategic thinking, practical execution, and technology-enabled learning, we deliver integrated solutions that support professional services excellence, talent sustainability, and long-term business performance.
+                </p>
+                <p>
+                  Our commitment extends beyond individual projects to building enduring relationships that support continuous improvement and sustained competitive advantage.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-card border border-border rounded-xl p-6 hover-lift">
+                <div className="font-display text-3xl font-bold text-gradient mb-2">2025</div>
+                <div className="text-sm text-muted-foreground">Founded</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-6 hover-lift">
+                <div className="font-display text-3xl font-bold text-gradient mb-2">50+</div>
+                <div className="text-sm text-muted-foreground">Clients Served</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-6 hover-lift">
+                <div className="font-display text-3xl font-bold text-gradient mb-2">150+</div>
+                <div className="text-sm text-muted-foreground">Projects Completed</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-6 hover-lift">
+                <div className="font-display text-3xl font-bold text-gradient mb-2">5+</div>
+                <div className="text-sm text-muted-foreground">Team Members</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-20 md:py-28 bg-card/50">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-card border-border hover-lift">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center mb-6 group-hover:shadow-glow transition-all duration-300">
+                  <Target className="text-primary-foreground" size={28} />
+                </div>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Mission</h3>
+                <p className="text-muted-foreground">
+                  Accenvix Solutions is committed to delivering high-quality, industry-aligned training and consulting services that enhance professional services performance through continuous skills transformation and digital adoption.
+                </p>
+                <p className="text-muted-foreground mt-2">
+                  We empower individuals with practical, relevant, and applicable knowledge while building long-term partnerships grounded in trust, professionalism, and measurable outcomes.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-card border-border hover-lift">
+              <CardContent className="p-8">
+                <div className="w-14 h-14 rounded-xl gradient-accent flex items-center justify-center mb-6 group-hover:shadow-glow transition-all duration-300">
+                  <Eye className="text-accent-foreground" size={28} />
+                </div>
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">Our Vision</h3>
+                <p className="text-muted-foreground">
+                  To be a trusted strategic partner in professional training, business consulting, and technology-enabled learning, recognised for quality, integrity, and long-term impact.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Our Core <span className="text-gradient">Values</span>
+            </h2>
+            <p className="text-muted-foreground">
+              The principles that guide everything we do.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <Card key={index} className="group bg-card border-border hover-lift text-center">
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-all duration-300">
+                    <value.icon className="text-primary-foreground" size={28} />
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-foreground mb-2">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {value.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section - Temporarily Disabled */}
+      {/*
+      <section className="py-20 md:py-28 bg-card/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Meet Our <span className="text-gradient">Team</span>
+            </h2>
+            <p className="text-muted-foreground">
+              The talented people behind Accenvix Solutions.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {team.map((member, index) => (
+              <Card key={index} className="bg-card border-border hover-lift text-center">
+                <CardContent className="p-6">
+                  <div className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center mx-auto mb-4">
+                    <span className="text-primary-foreground font-display font-bold text-2xl">
+                      {member.name.split(" ").map(n => n[0]).join("")}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-semibold text-lg text-foreground mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm text-primary font-medium mb-2">
+                    {member.role}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {member.bio}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      */}
+    </Layout>
+  );
+}

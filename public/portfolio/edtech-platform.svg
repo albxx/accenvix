@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'>
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id='bgGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#059669' stop-opacity='0.1'/>
+      <stop offset='100%' stop-color='#7c3aed' stop-opacity='0.1'/>
+    </linearGradient>
+    <linearGradient id='courseGradient' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#059669'/>
+      <stop offset='100%' stop-color='#7c3aed'/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width='600' height='400' fill='url(#bgGradient)'/>
+  
+  <!-- Header -->
+  <rect x='30' y='30' width='540' height='50' rx='8' fill='white' stroke='#e2e8f0' stroke-width='1'/>
+  <text x='50' y='60' font-family='Arial, sans-serif' font-size='16' fill='#334155' font-weight='bold'>LearnSmart Academy Platform</text>
+  
+  <!-- Course categories -->
+  <rect x='50' y='100' width='120' height='40' rx='20' fill='url(#courseGradient)'/>
+  <text x='70' y='125' font-family='Arial, sans-serif' font-size='12' fill='white'>Programming</text>
+  
+  <rect x='180' y='100' width='120' height='40' rx='20' fill='#e2e8f0'/>
+  <text x='210' y='125' font-family='Arial, sans-serif' font-size='12' fill='#334155'>Design</text>
+  
+  <rect x='310' y='100' width='120' height='40' rx='20' fill='#e2e8f0'/>
+  <text x='345' y='125' font-family='Arial, sans-serif' font-size='12' fill='#334155'>Business</text>
+  
+  <rect x='440' y='100' width='120' height='40' rx='20' fill='#e2e8f0'/>
+  <text x='475' y='125' font-family='Arial, sans-serif' font-size='12' fill='#334155'>Science</text>
+  
+  <!-- Featured courses -->
+  <rect x='50' y='160' width='150' height='180' rx='8' fill='white' stroke='#e2e8f0' stroke-width='1'/>
+  <rect x='225' y='160' width='150' height='180' rx='8' fill='white' stroke='#e2e8f0' stroke-width='1'/>
+  <rect x='400' y='160' width='150' height='180' rx='8' fill='white' stroke='#e2e8f0' stroke-width='1'/>
+  
+  <!-- Course thumbnails -->
+  <rect x='60' y='170' width='130' height='80' rx='4' fill='#dbeafe'/>
+  <rect x='235' y='170' width='130' height='80' rx='4' fill='#dcfce7'/>
+  <rect x='410' y='170' width='130' height='80' rx='4' fill='#fde2e4'/>
+  
+  <!-- Play icons -->
+  <circle cx='125' cy='210' r='15' fill='#3b82f6'/>
+  <polygon points='118,205 118,215 132,210' fill='white'/>
+  <circle cx='300' cy='210' r='15' fill='#10b981'/>
+  <polygon points='293,205 293,215 307,210' fill='white'/>
+  <circle cx='475' cy='210' r='15' fill='#ef4444'/>
+  <polygon points='468,205 468,215 482,210' fill='white'/>
+  
+  <!-- Course titles -->
+  <text x='60' y='270' font-family='Arial, sans-serif' font-size='14' fill='#334155' font-weight='bold'>Advanced React</text>
+  <text x='235' y='270' font-family='Arial, sans-serif' font-size='14' fill='#334155' font-weight='bold'>UI Design</text>
+  <text x='410' y='270' font-family='Arial, sans-serif' font-size='14' fill='#334155' font-weight='bold'>Data Science</text>
+  
+  <!-- Instructor info -->
+  <circle cx='70' cy='295' r='8' fill='#94a3b8'/>
+  <text x='85' y='298' font-family='Arial, sans-serif' font-size='10' fill='#64748b'>John Smith</text>
+  
+  <circle cx='245' cy='295' r='8' fill='#94a3b8'/>
+  <text x='260' y='298' font-family='Arial, sans-serif' font-size='10' fill='#64748b'>Sarah Johnson</text>
+  
+  <circle cx='420' cy='295' r='8' fill='#94a3b8'/>
+  <text x='435' y='298' font-family='Arial, sans-serif' font-size='10' fill='#64748b'>Mike Wilson</text>
+  
+  <!-- Ratings -->
+  <text x='60' y='320' font-family='Arial, sans-serif' font-size='10' fill='#f59e0b'></text>
+  <text x='235' y='320' font-family='Arial, sans-serif' font-size='10' fill='#f59e0b'></text>
+  <text x='410' y='320' font-family='Arial, sans-serif' font-size='10' fill='#f59e0b'></text>
+  
+  <!-- Progress bars -->
+  <rect x='60' y='330' width='100' height='6' rx='3' fill='#e2e8f0'/>
+  <rect x='60' y='330' width='70' height='6' rx='3' fill='#3b82f6'/>
+  
+  <rect x='235' y='330' width='100' height='6' rx='3' fill='#e2e8f0'/>
+  <rect x='235' y='330' width='40' height='6' rx='3' fill='#3b82f6'/>
+  
+  <rect x='410' y='330' width='100' height='6' rx='3' fill='#e2e8f0'/>
+  <rect x='410' y='330' width='90' height='6' rx='3' fill='#3b82f6'/>
+</svg>

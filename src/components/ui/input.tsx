@@ -1,73 +1,22 @@
-import React from 'react';
+import * as React from "react";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
-  fullWidth?: boolean;
-}
+import { cn } from "@/lib/utils";
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, fullWidth = false, className = '', ...props }, ref) => {
-    const baseClasses = 'block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm';
-    const errorClasses = error ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500' : '';
-    const widthClass = fullWidth ? 'w-full' : '';
-    
-    const classes = `${baseClasses} ${errorClasses} ${widthClass} ${className}`;
-    
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type, ...props }, ref) => {
     return (
-      <div className="w-full">
-        {label && (
-          <label htmlFor={props.id} className="block text-sm font-medium text-gray-700 mb-1">
-            {label}
-          </label>
+      <input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className,
         )}
-        <input
-          ref={ref}
-          className={classes}
-          {...props}
-        />
-        {error && (
-          <p className="mt-1 text-sm text-red-600">{error}</p>
-        )}
-      </div>
+        ref={ref}
+        {...props}
+      />
     );
-  }
+  },
 );
+Input.displayName = "Input";
 
-Input.displayName = 'Input';
-
-interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: string;
-  error?: string;
-  fullWidth?: boolean;
-}
-
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ label, error, fullWidth = false, className = '', ...props }, ref) => {
-    const baseClasses = 'block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm';
-    const errorClasses = error ? 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500' : '';
-    const widthClass = fullWidth ? 'w-full' : '';
-    
-    const classes = `${baseClasses} ${errorClasses} ${widthClass} ${className}`;
-    
-    return (
-      <div className="w-full">
-        {label && (
-          <label htmlFor={props.id} className="block text-sm font-medium text-gray-700 mb-1">
-            {label}
-          </label>
-        )}
-        <textarea
-          ref={ref}
-          className={classes}
-          {...props}
-        />
-        {error && (
-          <p className="mt-1 text-sm text-red-600">{error}</p>
-        )}
-      </div>
-    );
-  }
-);
-
-TextArea.displayName = 'TextArea';
+export { Input };

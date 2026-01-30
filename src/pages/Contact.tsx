@@ -1,0 +1,256 @@
+import { useState } from "react";
+import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from "lucide-react";
+import { Layout } from "@/components/layout";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const contactInfo = [
+  {
+    icon: Mail,
+    title: "Email",
+    value: "hello@accenvix.com",
+    href: "mailto:hello@accenvix.com",
+  },
+  {
+    icon: Phone,
+    title: "Phone",
+    value: "+60 13 991 5339",
+    href: "tel:+60139915339",
+  },
+  {
+    icon: MapPin,
+    title: "Address",
+    value: "11-02 Imperia, No 1 Jalan Laksamana, 79000 Iskandar Puteri, Johor, Malaysia",
+    href: null,
+  },
+  {
+    icon: Clock,
+    title: "Business Hours",
+    value: "Mon - Fri: 9AM - 6PM MYT",
+    href: null,
+  },
+];
+
+export default function Contact() {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission (replace with actual API call in Phase 2)
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // Store in localStorage for now
+    const submissions = JSON.parse(localStorage.getItem("contactSubmissions") || "[]");
+    submissions.push({ ...formData, submittedAt: new Date().toISOString() });
+    localStorage.setItem("contactSubmissions", JSON.stringify(submissions));
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    toast({
+      title: "Message Sent!",
+      description: "We'll get back to you as soon as possible.",
+    });
+
+    // Reset form after short delay
+    setTimeout(() => {
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setIsSubmitted(false);
+    }, 3000);
+  };
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="py-20 md:py-28 gradient-hero relative overflow-hidden">
+        <div className="absolute inset-0 gradient-glow" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
+              Get in <span className="text-gradient">Touch</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              Ready to start your next project with Accenvix Solutions? We'd love to hear from you. Send us a message and we'll respond as soon as possible to discuss how we can help transform your ideas into reality.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form & Info Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-5 gap-12">
+            {/* Contact Form */}
+            <div className="lg:col-span-3">
+              <div className="bg-card border border-border rounded-2xl p-8">
+                <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                  Send Us a Message
+                </h2>
+
+                {isSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mb-4">
+                      <CheckCircle className="text-primary-foreground" size={32} />
+                    </div>
+                    <h3 className="font-display text-xl font-bold text-foreground mb-2">
+                      Thank You!
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Your message has been sent successfully. We'll get back to you soon.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="John Doe"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="bg-background"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          placeholder="john@example.com"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="bg-background"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="subject">Subject</Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        placeholder="Project Inquiry"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="bg-background"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell us about your project..."
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={6}
+                        className="bg-background resize-none"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full gradient-primary hover:opacity-90 transition-opacity"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <Send size={18} />
+                          Send Message
+                        </span>
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="lg:col-span-2">
+              <div className="space-y-6">
+                <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                  Contact Information
+                </h2>
+
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <div
+                      key={index}
+                      className="flex gap-4 p-4 bg-card border border-border rounded-xl hover-lift"
+                    >
+                      <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shrink-0 group-hover:shadow-glow transition-all duration-300">
+                        <info.icon className="text-primary-foreground" size={20} />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground mb-1">{info.title}</h3>
+                        {info.href ? (
+                          <a
+                            href={info.href}
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                        ) : (
+                          <p className="text-sm text-muted-foreground">{info.value}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Map Placeholder */}
+                <div className="mt-8">
+                  <div className="aspect-video rounded-xl bg-card border border-border overflow-hidden">
+                    <div className="w-full h-full gradient-primary opacity-20 flex items-center justify-center">
+                      <div className="text-center">
+                        <MapPin className="mx-auto mb-2 text-muted-foreground" size={32} />
+                        <p className="text-sm text-muted-foreground">
+                          Map integration coming soon
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
