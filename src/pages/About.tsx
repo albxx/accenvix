@@ -145,14 +145,14 @@ export default function About() {
                 <div className="font-display text-3xl font-bold text-gradient mb-2">2025</div>
                 <div className="text-sm text-muted-foreground">{t('about.founded')}</div>
               </div>
-              <div className="bg-card border border-border rounded-xl p-6 hover-lift">
+              {/* <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">50+</div>
                 <div className="text-sm text-muted-foreground">{t('stats.happyClients')}</div>
               </div>
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">150+</div>
                 <div className="text-sm text-muted-foreground">{t('stats.projectsCompleted')}</div>
-              </div>
+              </div> */}
               <div className="bg-card border border-border rounded-xl p-6 hover-lift">
                 <div className="font-display text-3xl font-bold text-gradient mb-2">5+</div>
                 <div className="text-sm text-muted-foreground">{t('about.teamMembers')}</div>

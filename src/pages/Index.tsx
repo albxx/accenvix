@@ -37,9 +37,9 @@ export default function Index() {
   ];
 
   const stats = [
-    { value: "150+", labelKey: "stats.projectsCompleted" },
-    { value: "50+", labelKey: "stats.happyClients" },
-    { value: "10+", labelKey: "stats.yearsExperience" },
+    // { value: "150+", labelKey: "stats.projectsCompleted" },
+    // { value: "50+", labelKey: "stats.happyClients" },
+    { value: "15+", labelKey: "stats.yearsExperience" },
     { value: "99%", labelKey: "stats.clientSatisfaction" },
   ];
 
@@ -148,15 +148,17 @@ export default function Index() {
       {/* Stats Section */}
       <section className="py-16 bg-card border-y border-border">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
-                  {stat.value}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-2 gap-8 max-w-md">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="font-display text-3xl md:text-4xl font-bold text-gradient mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
                 </div>
-                <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -216,14 +218,14 @@ export default function Index() {
                   
                   {/* Stats Preview */}
                   <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="text-center">
+                    {/* <div className="text-center">
                       <div className="font-display text-xl font-bold text-gradient">150+</div>
                       <div className="text-xs text-muted-foreground">{t('stats.projectsCompletedShort')}</div>
                     </div>
                     <div className="text-center">
                       <div className="font-display text-xl font-bold text-gradient">50+</div>
                       <div className="text-xs text-muted-foreground">{t('stats.happyClientsShort')}</div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 
@@ -289,29 +291,31 @@ export default function Index() {
             </p>
           </div>
 
-          <Carousel className="w-full">
-            <CarouselContent>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-                <Card className="group hover-lift bg-card border-border overflow-hidden">
-                  <div className="aspect-video relative overflow-hidden">
-                    <img 
-                      src="/portfolio/ecommerce-platform.svg" 
-                      alt={t('portfolio.webDevelopment')}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-                  </div>
-                  <CardContent className="p-6">
-                    <Badge variant="secondary" className="mb-2">{t('portfolio.educationTech')}</Badge>
-                    <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      {t('portfolio.EduSyncLearningPlatform')}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {t('portfolio.EduSyncLearningPlatformDesc')}
-                    </p>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
+          <div className="flex justify-center">
+            <div className="w-full max-w-4xl">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                    <Card className="group hover-lift bg-card border-border overflow-hidden">
+                      <div className="aspect-video relative overflow-hidden">
+                        <img 
+                          src="/portfolio/ecommerce-platform.svg" 
+                          alt={t('portfolio.webDevelopment')}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                      </div>
+                      <CardContent className="p-6">
+                        <Badge variant="secondary" className="mb-2">{t('portfolio.educationTech')}</Badge>
+                        <h3 className="font-display font-semibold text-lg text-foreground mb-2">
+                          {t('portfolio.EduSyncLearningPlatform')}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {t('portfolio.EduSyncLearningPlatformDesc')}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
               {/* <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                 <Card className="group hover-lift bg-card border-border overflow-hidden">
                   <div className="aspect-video relative overflow-hidden">
@@ -358,6 +362,8 @@ export default function Index() {
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
+          </div>
+          </div>
 
           <div className="text-center mt-12">
             <Button asChild variant="outline">
