@@ -128,7 +128,7 @@ export default function Index() {
               <div className="mt-6 text-center">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
                   <Award className="w-4 h-4 mr-1" />
-                  {t('homepage.trustedByClients')}
+                  {/* {t('homepage.trustedByClients')} */}
                 </div>
               </div>
                 </div>
@@ -304,15 +304,15 @@ export default function Index() {
                   <CardContent className="p-6">
                     <Badge variant="secondary" className="mb-2">{t('portfolio.educationTech')}</Badge>
                     <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      {t('portfolio.edtechLearningPlatform')}
+                      {t('portfolio.EduSyncLearningPlatform')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      {t('portfolio.edtechLearningPlatformDesc')}
+                      {t('portfolio.EduSyncLearningPlatformDesc')}
                     </p>
                   </CardContent>
                 </Card>
               </CarouselItem>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+              {/* <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                 <Card className="group hover-lift bg-card border-border overflow-hidden">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
@@ -325,15 +325,15 @@ export default function Index() {
                   <CardContent className="p-6">
                     <Badge variant="secondary" className="mb-2">{t('portfolio.webDevelopment')}</Badge>
                     <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      {t('portfolio.edtechLearningPlatform')}
+                      {t('portfolio.EduSyncLearningPlatform')}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      {t('portfolio.edtechLearningPlatformDesc')}
+                      {t('portfolio.EduSyncLearningPlatformDesc')}
                     </p>
                   </CardContent>
                 </Card>
-              </CarouselItem>
-              <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+              </CarouselItem> */}
+              {/* <CarouselItem className="md:basis-1/2 lg:basis-1/3">
                 <Card className="group hover-lift bg-card border-border overflow-hidden">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
@@ -353,7 +353,7 @@ export default function Index() {
                     </p>
                   </CardContent>
                 </Card>
-              </CarouselItem>
+              </CarouselItem> */}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
@@ -638,8 +638,7 @@ export default function Index() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ready to Start Your{" "}
-              <span className="text-gradient">Next Project?</span>
+              {t('homepage.readyToStart')}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               {t('homepage.contactCTADescription')}

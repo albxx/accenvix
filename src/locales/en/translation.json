@@ -145,8 +145,8 @@
     "enterpriseSoftware": "Enterprise Software",
     "mobileDevelopment": "Mobile Development",
     "cloudSolutions": "Cloud Solutions",
-    "edtechLearningPlatform": "EdTech Learning Platform",
-    "edtechLearningPlatformDesc": "Interactive online learning platform with video streaming, quizzes, and progress tracking.",
+    "EduSyncLearningPlatform": "EduSync Learning Platform",
+    "EduSyncLearningPlatformDesc": "Interactive online learning platform with video streaming, quizzes, and progress tracking.",
     "eCommercePlatform": "E-Commerce Platform",
     "eCommercePlatformDesc": "A full-featured e-commerce platform with real-time inventory management, payment integration, and analytics dashboard.",
     "healthcareManagement": "Healthcare Management System",
@@ -155,7 +155,7 @@
     "fintechMobileAppDesc": "Cross-platform mobile banking app with biometric authentication and real-time transaction tracking.",
     "logisticsDashboard": "Logistics Dashboard",
     "logisticsDashboardDesc": "Real-time logistics tracking dashboard with route optimization and delivery management features.",
-    "edtechLearningPlatform2": "EdTech Learning Platform",
+    "EduSyncLearningPlatform2": "EduSync Learning Platform",
     "iotDashboard": "IoT Dashboard",
     "iotDashboardDesc": "Industrial IoT monitoring dashboard for real-time sensor data visualization and predictive maintenance.",
     "wantToSeeProject": "Want to See Your Project Here?",
@@ -201,10 +201,115 @@
     "projectsCompleted": "Projects Completed",
     "happyClients": "Happy Clients",
     "yearsExperience": "Years Experience",
-    "clientSatisfaction": "Client Satisfaction"
+    "clientSatisfaction": "Client Satisfaction",
+    "projectsCompletedShort": "Projects",
+    "happyClientsShort": "Clients"
   },
   "notFound": {
     "title": "Page Not Found",
     "returnHome": "Return to Home"
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy",
+    "pageSubtitle": "Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.",
+    "informationCollection": {
+      "title": "Information Collection",
+      "content": "We collect information that you provide directly to us when you use our services, contact us, or interact with our website. This may include your name, email address, phone number, company information, and any other information you choose to provide."
+    },
+    "howWeUse": {
+      "title": "How We Use Your Information",
+      "content": "We use the information we collect to:",
+      "point1": "Provide, maintain, and improve our services",
+      "point2": "Respond to your inquiries and provide customer support",
+      "point3": "Send you administrative information and newsletters",
+      "point4": "Analyze trends and usage patterns to improve our services",
+      "point5": "Comply with legal obligations and protect our rights"
+    },
+    "cookies": {
+      "title": "Cookies and Tracking Technologies",
+      "content": "We use cookies and similar tracking technologies to track activity on our website and store certain information. Cookies are used to improve your browsing experience, remember your preferences, and analyze website performance."
+    },
+    "dataProtection": {
+      "title": "Data Protection",
+      "content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage."
+    },
+    "thirdParties": {
+      "title": "Third-Party Services",
+      "content": "We may share your information with trusted third-party service providers who assist us in operating our website, conducting our business, or serving our users, as long as those parties agree to keep this information confidential."
+    },
+    "retention": {
+      "title": "Data Retention",
+      "content": "We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements."
+    },
+    "rights": {
+      "title": "Your Rights",
+      "content": "Depending on your location, you may have certain rights regarding your personal information, including:",
+      "point1": "The right to access your personal data",
+      "point2": "The right to rectify inaccurate personal data",
+      "point3": "The right to erase your personal data",
+      "point4": "The right to restrict processing of your personal data"
+    },
+    "children": {
+      "title": "Children's Privacy",
+      "content": "Our services are not intended for children under the age of 13, and we do not knowingly collect personal information from children under 13."
+    },
+    "changes": {
+      "title": "Changes to This Policy",
+      "content": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the effective date."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "content": "If you have any questions about this Privacy Policy, please contact us:",
+      "email": "Email:"
+    }
+  },
+  "terms": {
+    "pageTitle": "Terms of Service",
+    "pageSubtitle": "These terms govern your use of our website and services. Please read them carefully.",
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content": "By accessing or using the Accenvix Solutions website and services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site."
+    },
+    "services": {
+      "title": "Services",
+      "content": "Accenvix Solutions provides professional training, business consulting, and digital transformation services. While we strive to provide accurate and reliable information, we do not guarantee the completeness, accuracy, or reliability of any content on our website."
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property",
+      "content": "All content on this website, including text, graphics, logos, images, and software, is the property of Accenvix Solutions or its licensors and is protected by intellectual property laws. You may not reproduce, distribute, or otherwise use any content without our prior written consent."
+    },
+    "userResponsibilities": {
+      "title": "User Responsibilities",
+      "content": "When using our website and services, you agree not to:",
+      "point1": "Use the website for any unlawful purpose",
+      "point2": "Transmit any harmful, threatening, or offensive material",
+      "point3": "Attempt to gain unauthorized access to our systems",
+      "point4": "Interfere with the proper functioning of our website"
+    },
+    "limitation": {
+      "title": "Limitation of Liability",
+      "content": "Accenvix Solutions shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your use of our website or services. Your sole remedy for dissatisfaction with our services is to discontinue use."
+    },
+    "thirdParty": {
+      "title": "Third-Party Links",
+      "content": "Our website may contain links to third-party websites. These links are provided for your convenience only. We do not endorse and are not responsible for the content or practices of any third-party websites."
+    },
+    "termination": {
+      "title": "Termination",
+      "content": "We reserve the right to terminate or suspend your access to our website and services at any time, without notice, for any reason, including but not limited to violation of these Terms of Service."
+    },
+    "governingLaw": {
+      "title": "Governing Law",
+      "content": "These Terms of Service shall be governed by and construed in accordance with the laws of Malaysia, without regard to its conflict of law provisions."
+    },
+    "changes": {
+      "title": "Changes to Terms",
+      "content": "We reserve the right to modify these Terms of Service at any time. We will notify you of any changes by posting the new Terms of Service on this page and updating the effective date."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "content": "If you have any questions about these Terms of Service, please contact us:",
+      "email": "Email:"
+    }
   }
 }

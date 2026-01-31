@@ -144,8 +144,8 @@
     "enterpriseSoftware": "Perisian Perusahaan",
     "mobileDevelopment": "Pembangunan Mudah Alih",
     "cloudSolutions": "Penyelesaian Awan",
-    "edtechLearningPlatform": "Platform Pembelajaran EdTech",
-    "edtechLearningPlatformDesc": "Platform pembelajaran dalam talian interaktif dengan penstriman video, kuiz, dan penjejakan kemajuan.",
+    "EduSyncLearningPlatform": "Platform Pembelajaran EduSync",
+    "EduSyncLearningPlatformDesc": "Platform pembelajaran dalam talian interaktif dengan penstriman video, kuiz, dan penjejakan kemajuan.",
     "eCommercePlatform": "Platform E-Dagang",
     "eCommercePlatformDesc": "Platform e-dagang yang lengkap dengan pengurusan inventori masa nyata, integrasi pembayaran, dan papan pemuka analisis.",
     "healthcareManagement": "Sistem Pengurusan Penjagaan Kesihatan",
@@ -154,7 +154,7 @@
     "fintechMobileAppDesc": "Aplikasi perbankan mudah alih merentas platform dengan pengesahan biometrik dan penjejakan transaksi masa nyata.",
     "logisticsDashboard": "Papan Pemuka Logistik",
     "logisticsDashboardDesc": "Papan pemuka penjejakan logistik masa nyata dengan pengoptimuman laluan dan ciri pengurusan penghantaran.",
-    "edtechLearningPlatform2": "Platform Pembelajaran EdTech",
+    "EduSyncLearningPlatform2": "Platform Pembelajaran EduSync",
     "iotDashboard": "Papan Pemuka IoT",
     "iotDashboardDesc": "Papan pemantauan IoT industri untuk pengvisualan data sensor masa nyata dan penyelenggaraan prediktif.",
     "wantToSeeProject": "Ingin Melihat Projek Anda Di Sini?",
@@ -200,10 +200,115 @@
     "projectsCompleted": "Projek Siap",
     "happyClients": "Pelanggan Berpuas Hati",
     "yearsExperience": "Tahun Pengalaman",
-    "clientSatisfaction": "Kepuasan Pelanggan"
+    "clientSatisfaction": "Kepuasan Pelanggan",
+    "projectsCompletedShort": "Projek",
+    "happyClientsShort": "Pelanggan"
   },
   "notFound": {
     "title": "Halaman Tidak Dijumpai",
     "returnHome": "Kembali ke Laman Utama"
+  },
+  "privacy": {
+    "pageTitle": "Dasar Privasi",
+    "pageSubtitle": "Privasi anda penting bagi kami. Dasar ini menerangkan bagaimana kami mengumpul, menggunakan, dan melindungi maklumat peribadi anda.",
+    "informationCollection": {
+      "title": "Pengumpulan Maklumat",
+      "content": "Kami mengumpul maklumat yang anda berikan secara langsung kepada kami apabila anda menggunakan perkhidmatan kami, menghubungi kami, atau berinteraksi dengan laman web kami. Ini mungkin termasuk nama anda, alamat e-mel, nombor telefon, maklumat syarikat, dan sebarang maklumat lain yang anda pilih untuk disediakan."
+    },
+    "howWeUse": {
+      "title": "Bagaimana Kami Menggunakan Maklumat Anda",
+      "content": "Kami menggunakan maklumat yang kami kumpul untuk:",
+      "point1": "Menyediakan, mengekalkan, dan meningkatkan perkhidmatan kami",
+      "point2": "Menjawab pertanyaan anda dan menyediakan sokongan pelanggan",
+      "point3": "Menghantar maklumat pentadbiran dan surat berita kepada anda",
+      "point4": "Menganalisis trend dan corak penggunaan untuk meningkatkan perkhidmatan kami",
+      "point5": "Mematuhi obligasi undang-undang dan melindungi hak kami"
+    },
+    "cookies": {
+      "title": "Kuki dan Teknologi Penjejakan",
+      "content": "Kami menggunakan kuki dan teknologi penjejakan yang serupa untuk menjejaki aktiviti di laman web kami dan menyimpan maklumat tertentu. Kuki digunakan untuk meningkatkan pengalaman pelayaran anda, mengingati keutamaan anda, dan menganalisis prestasi laman web."
+    },
+    "dataProtection": {
+      "title": "Perlindungan Data",
+      "content": "Kami melaksanakan langkah-langkah teknikal dan organisasi yang sesuai untuk melindungi maklumat peribadi anda daripada pemprosesan yang tidak dibenarkan atau menyalahi undang-undang, kehilangan tidak sengaja, pemusnahan, atau kerosakan."
+    },
+    "thirdParties": {
+      "title": "Perkhidmatan Pihak Ketiga",
+      "content": "Kami mungkin berkongsi maklumat anda dengan penyedia perkhidmatan pihak ketiga yang dipercayai yang membantu kami dalam mengendalikan laman web kami, menjalankan perniagaan kami, atau melayani pengguna kami, selagi pihak tersebut bersetuju untuk menyimpan maklumat ini secara sulit."
+    },
+    "retention": {
+      "title": "Penyimpanan Data",
+      "content": "Kami menyimpan maklumat peribadi anda hanya selama yang diperlukan untuk memenuhi tujuan pengumpulannya, termasuk untuk tujuan memenuhi sebarang keperluan undang-undang, perakaunan, atau pelaporan."
+    },
+    "rights": {
+      "title": "Hak Anda",
+      "content": "Bergantung pada lokasi anda, anda mungkin mempunyai hak tertentu berkenaan maklumat peribadi anda, termasuk:",
+      "point1": "Hak untuk mengakses data peribadi anda",
+      "point2": "Hak untuk membetulkan data peribadi yang tidak tepat",
+      "point3": "Hak untuk memadamkan data peribadi anda",
+      "point4": "Hak untuk mengehadkan pemprosesan data peribadi anda"
+    },
+    "children": {
+      "title": "Privasi Kanak-Kanak",
+      "content": "Perkhidmatan kami bukan untuk kanak-kanak di bawah umur 13 tahun, dan kami tidak mengumpul maklumat peribadi daripada kanak-kanak di bawah 13 tahun dengan sengaja."
+    },
+    "changes": {
+      "title": "Perubahan kepada Dasar Ini",
+      "content": "Kami mungkin mengemas kini Dasar Privasi kami dari masa ke semasa. Kami akan memberitahu anda mengenai sebarang perubahan dengan menyiarkan Dasar Privasi baru di halaman ini dan mengemas kini tarikh berkuat kuasa."
+    },
+    "contact": {
+      "title": "Hubungi Kami",
+      "content": "Jika anda mempunyai sebarang soalan mengenai Dasar Privasi ini, sila hubungi kami:",
+      "email": "E-mel:"
+    }
+  },
+  "terms": {
+    "pageTitle": "Terma Perkhidmatan",
+    "pageSubtitle": "Terma-terma ini mentadbir penggunaan laman web dan perkhidmatan kami. Sila baca dengan teliti.",
+    "acceptance": {
+      "title": "Penerimaan Terma",
+      "content": "Dengan mengakses atau menggunakan laman web dan perkhidmatan Accenvix Solutions, anda bersetuju untuk terikat dengan Terma Perkhidmatan ini dan semua undang-undang dan peraturan yang berkenaan. Jika anda tidak bersetuju dengan mana-mana terma ini, anda dilarang daripada menggunakan atau mengakses laman ini."
+    },
+    "services": {
+      "title": "Perkhidmatan",
+      "content": "Accenvix Solutions menyediakan latihan profesional, perundingan perniagaan, dan perkhidmatan transformasi digital. Walaupun kami berusaha untuk menyediakan maklumat yang tepat dan boleh dipercayai, kami tidak menjamin kelengkapan, ketepatan, atau kebolehpercayaan sebarang kandungan di laman web kami."
+    },
+    "intellectualProperty": {
+      "title": "Hartanah Intelektual",
+      "content": "Semua kandungan di laman web ini, termasuk teks, grafik, logo, imej, dan perisian, adalah hakmilik Accenvix Solutions atau pemberi lesen kami dan dilindungi oleh undang-undang hartanah intelektual. Anda tidak boleh memperbanyak, mengedarkan, atau menggunakan sebarang kandungan tanpa kebenaran bertulis awal kami."
+    },
+    "userResponsibilities": {
+      "title": "Tanggungjawab Pengguna",
+      "content": "Apabila menggunakan laman web dan perkhidmatan kami, anda bersetuju untuk tidak:",
+      "point1": "Menggunakan laman web untuk tujuan yang menyalahi undang-undang",
+      "point2": "Menghantar sebarang bahan yang berbahaya, mengancam, atau menyinggung",
+      "point3": "Cuba untuk mendapat akses tanpa dibenarkan ke sistem kami",
+      "point4": "Mengganggu fungsi yang betul laman web kami"
+    },
+    "limitation": {
+      "title": "Had Tanggungjawab",
+      "content": "Accenvix Solutions tidak akan bertanggungjawab atas sebarang kerosakan langsung, tidak langsung, sampingan, kesan, atau hukuman yang timbul daripada penggunaan laman web atau perkhidmatan kami. Pemulihan tunggal anda untuk ketidakpuasan hati dengan perkhidmatan kami ialah untuk menghentikan penggunaan."
+    },
+    "thirdParty": {
+      "title": "Pautan Pihak Ketiga",
+      "content": "Laman web kami mungkin mengandungi pautan ke laman web pihak ketiga. Pautan ini disediakan untuk kemudahan anda sahaja. Kami tidak mengendors dan tidak bertanggungjawab atas kandungan atau amalan sebarang laman web pihak ketiga."
+    },
+    "termination": {
+      "title": "Penamatan",
+      "content": "Kami berhak untuk menamatkan atau menggantung akses anda ke laman web dan perkhidmatan kami pada bila-bila masa, tanpa notis, atas sebarang sebab, termasuk tetapi tidak terhad kepada pelanggaran Terma Perkhidmatan ini."
+    },
+    "governingLaw": {
+      "title": "Undang-Undang yang Mentadbir",
+      "content": "Terma Perkhidmatan ini hendaklah ditadbir dan ditafsirkan mengikut undang-undang Malaysia, tanpa menghiraukan ketentuan konflik undang-undangnya."
+    },
+    "changes": {
+      "title": "Perubahan kepada Terma",
+      "content": "Kami berhak untuk mengubahsuai Terma Perkhidmatan ini pada bila-bila masa. Kami akan memberitahu anda mengenai sebarang perubahan dengan menyiarkan Terma Perkhidmatan baru di halaman ini dan mengemas kini tarikh berkuat kuasa."
+    },
+    "contact": {
+      "title": "Maklumat Hubungan",
+      "content": "Jika anda mempunyai sebarang soalan mengenai Terma Perkhidmatan ini, sila hubungi kami:",
+      "email": "E-mel:"
+    }
   }
 }
