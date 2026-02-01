@@ -79,10 +79,14 @@ export default function Tasks() {
 
   const handleCreateTask = async () => {
     try {
-      await createTask({
+      // Handle empty date fields by converting empty strings to null
+      const taskData = {
         ...formData,
-        estimated_hours: Number(formData.estimated_hours)
-      })
+        estimated_hours: Number(formData.estimated_hours),
+        start_date: formData.start_date || null,
+        due_date: formData.due_date || null
+      }
+      await createTask(taskData)
       setIsDialogOpen(false)
       resetForm()
     } catch (err) {
@@ -92,10 +96,14 @@ export default function Tasks() {
 
   const handleUpdateTask = async () => {
     try {
-      await updateTask(editingTask.id, {
+      // Handle empty date fields by converting empty strings to null
+      const taskData = {
         ...formData,
-        estimated_hours: Number(formData.estimated_hours)
-      })
+        estimated_hours: Number(formData.estimated_hours),
+        start_date: formData.start_date || null,
+        due_date: formData.due_date || null
+      }
+      await updateTask(editingTask.id, taskData)
       setIsDialogOpen(false)
       resetForm()
     } catch (err) {
@@ -363,16 +371,30 @@ export default function Tasks() {
                   </div>
                 </div>
                 
-                <div className="grid gap-2">
-                  <label htmlFor="due_date" className="text-sm font-medium">
-                    Due Date
-                  </label>
-                  <Input
-                    id="due_date"
-                    type="date"
-                    value={formData.due_date}
-                    onChange={(e) => setFormData({...formData, due_date: e.target.value})}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid gap-2">
+                    <label htmlFor="start_date" className="text-sm font-medium">
+                      Start Date
+                    </label>
+                    <Input
+                      id="start_date"
+                      type="date"
+                      value={formData.start_date}
+                      onChange={(e) => setFormData({...formData, start_date: e.target.value})}
+                    />
+                  </div>
+                  
+                  <div className="grid gap-2">
+                    <label htmlFor="due_date" className="text-sm font-medium">
+                      Due Date
+                    </label>
+                    <Input
+                      id="due_date"
+                      type="date"
+                      value={formData.due_date}
+                      onChange={(e) => setFormData({...formData, due_date: e.target.value})}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="flex justify-end gap-2">
