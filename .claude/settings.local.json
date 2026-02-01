@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(supabase db reset --linked)",
+      "Bash(supabase db reset --linked --debug)",
+      "Bash(supabase link)",
+      "Bash(supabase link --project-ref=falwqgxcjicucvjencrx)",
+      "Bash(supabase db push)",
+      "Bash(supabase status)"
+    ]
+  }
+}

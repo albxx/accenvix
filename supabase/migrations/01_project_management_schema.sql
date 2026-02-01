@@ -1,7 +1,7 @@
 -- Project Management Schema
 
 -- Enable UUID extension
-create extension if not exists "uuid-ossp";
+create extension if not exists "uuid-ossp" with schema public;
 
 -- Team Members table
 create table team_members (
