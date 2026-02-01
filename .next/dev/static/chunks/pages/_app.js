@@ -1,0 +1,13 @@
+__turbopack_load_page_chunks__("/_app", [
+  "static/chunks/0648c_next_dist_compiled_2ca37cc1._.js",
+  "static/chunks/0648c_next_dist_shared_lib_bbd58c89._.js",
+  "static/chunks/0648c_next_dist_client_c1e94f49._.js",
+  "static/chunks/0648c_next_dist_ad5cc9ae._.js",
+  "static/chunks/0648c_next_app_df148534.js",
+  "static/chunks/[next]_entry_page-loader_ts_fcda5957._.js",
+  "static/chunks/0648c_react-dom_c46cda59._.js",
+  "static/chunks/0648c_e4f6a28c._.js",
+  "static/chunks/[root-of-the-server]__998a7658._.js",
+  "static/chunks/accenvix_pages__app_2da965e7._.js",
+  "static/chunks/turbopack-accenvix_pages__app_55a14ba4._.js"
+])
