@@ -73,6 +73,11 @@
 - `lucide-react`: Icon library
 - `tailwind-merge`: Tailwind class name conflict resolution
 - `tailwindcss-animate`: Animation utilities
+- `@supabase/supabase-js`: Supabase client for backend integration
+- `@tanstack/react-query`: Data fetching and state management
+- `react-router-dom`: Client-side routing
+- `recharts`: Data visualization library
+- `date-fns`: Date manipulation utilities
 
 ### Development Dependencies
 - `@types/*`: TypeScript definition files

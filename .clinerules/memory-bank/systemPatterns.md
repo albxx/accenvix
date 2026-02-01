@@ -6,12 +6,12 @@ The AccEnvix website follows a component-based architecture using React with Typ
 ## Core Architecture Patterns
 
 ### Component-Based Structure
-- **Pages Layer**: Contains top-level page components (About, Contact, Index, Portfolio, Services)
+- **Pages Layer**: Contains top-level page components (About, Contact, Index, Portfolio, Services) and admin pages (Dashboard, Tasks, Projects, Team, Reports, Login)
 - **Components Layer**: Reusable UI components organized by functionality (layout, ui, hooks, lib)
-- **Layout Components**: Navbar, Footer, and overall page structure components
+- **Layout Components**: Navbar, Footer, and overall page structure components (including AdminLayout for admin section)
 - **UI Components**: ShadCN UI components customized for project needs
-- **Hooks**: Custom React hooks for shared logic (use-mobile, use-toast)
-- **Lib**: Utility functions and shared logic (utils.ts)
+- **Hooks**: Custom React hooks for shared logic (use-mobile, use-toast) and Supabase data hooks (useTasks, useProjects, useTeamMembers)
+- **Lib**: Utility functions and shared logic (utils.ts) and Supabase client configuration
 
 ### File Organization
 ```
