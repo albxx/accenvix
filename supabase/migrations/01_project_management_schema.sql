@@ -8,6 +8,7 @@ create table team_members (
   id uuid default uuid_generate_v4() primary key,
   name text not null,
   email text unique not null,
+  password text,
   role text check (role in ('admin', 'manager', 'member')) default 'member',
   skills text[] default '{}',
   avatar_url text,
@@ -143,11 +144,11 @@ create policy "Team members can delete tasks"
   using (true);
 
 -- Insert sample data
-insert into team_members (name, email, role, skills) values
-  ('Admin User', 'admin@accenvix.com', 'admin', ARRAY['management', 'strategy']),
-  ('Project Manager', 'pm@accenvix.com', 'manager', ARRAY['planning', 'coordination']),
-  ('Developer', 'dev@accenvix.com', 'member', ARRAY['react', 'typescript', 'nodejs']),
-  ('Designer', 'design@accenvix.com', 'member', ARRAY['ui/ux', 'figma', 'adobe']);
+insert into team_members (name, email, password, role, skills) values
+  ('Admin User', 'admin@accenvix.com', 'admin123', 'admin', ARRAY['management', 'strategy']),
+  ('Project Manager', 'pm@accenvix.com', 'manager123', 'manager', ARRAY['planning', 'coordination']),
+  ('Developer', 'dev@accenvix.com', 'dev123', 'member', ARRAY['react', 'typescript', 'nodejs']),
+  ('Designer', 'design@accenvix.com', 'design123', 'member', ARRAY['ui/ux', 'figma', 'adobe']);
 
 insert into resources (name, type, skills, hourly_rate) values
   ('Development Team', 'human', ARRAY['fullstack', 'frontend', 'backend'], 150.00),
