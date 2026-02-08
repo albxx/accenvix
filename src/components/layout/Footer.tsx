@@ -21,7 +21,7 @@ export function Footer() {
     services: [
       { href: "/services#business-consulting", key: "services.businessConsulting" },
       { href: "/services#professional-training", key: "services.professionalTraining" },
-      { href: "/services#it-digital", key: "services.itDigital" },
+      { href: "/it-services", key: "services.itDigital" },
       { href: "/services#learning-support", key: "services.learningSupport" },
     ],
   };

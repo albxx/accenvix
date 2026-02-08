@@ -24,13 +24,6 @@ export default function Services() {
       featuresKey: "services.professionalTrainingFeatures",
     },
     {
-      id: "it-digital",
-      icon: Laptop,
-      titleKey: "services.itDigital",
-      descriptionKey: "services.itDigitalDesc",
-      featuresKey: "services.itDigitalFeatures",
-    },
-    {
       id: "learning-support",
       icon: Users,
       titleKey: "services.learningSupport",
@@ -98,6 +91,7 @@ export default function Services() {
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-20 md:py-28 bg-card/50 relative overflow-hidden">
