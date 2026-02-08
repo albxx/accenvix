@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -8,6 +9,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/layout'
 
 export default function Login() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -28,7 +30,7 @@ export default function Login() {
         navigate('/admin/dashboard')
       }
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.')
+      setError(t('login.errorOccurred'))
       console.error('Login error:', err)
     } finally {
       setLoading(false)
@@ -40,9 +42,9 @@ export default function Login() {
       <div className="min-h-[80vh] flex items-center justify-center py-12">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">Admin Login</CardTitle>
+            <CardTitle className="text-2xl font-bold">{t('login.title')}</CardTitle>
             <CardDescription>
-              Sign in to access the project management dashboard
+              {t('login.description')}
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
@@ -53,22 +55,22 @@ export default function Login() {
                 </div>
               )}
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('login.email')}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@accenvix.com"
+                  placeholder={t('login.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('login.password')}</Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={t('login.passwordPlaceholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -77,7 +79,7 @@ export default function Login() {
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? 'Signing in...' : 'Sign In'}
+                {loading ? t('login.signingIn') : t('login.signIn')}
               </Button>
             </CardFooter>
           </form>

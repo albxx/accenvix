@@ -6,7 +6,8 @@
       "Bash(supabase link)",
       "Bash(supabase link --project-ref=falwqgxcjicucvjencrx)",
       "Bash(supabase db push)",
-      "Bash(supabase status)"
+      "Bash(supabase status)",
+      "Bash(npm run build)"
     ]
   }
 }

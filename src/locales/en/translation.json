@@ -209,6 +209,34 @@
     "title": "Page Not Found",
     "returnHome": "Return to Home"
   },
+  "theme": {
+    "title": "Theme",
+    "mode": "Mode",
+    "dark": "Dark",
+    "light": "Light",
+    "accentColor": "Accent Color",
+    "colors": {
+      "blue": "Blue",
+      "orange": "Orange",
+      "purple": "Purple",
+      "green": "Green",
+      "pink": "Pink"
+    }
+  },
+  "login": {
+    "title": "Admin Login",
+    "description": "Sign in to access the project management dashboard",
+    "email": "Email",
+    "emailPlaceholder": "admin@accenvix.com",
+    "password": "Password",
+    "passwordPlaceholder": "********",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "errorOccurred": "An unexpected error occurred. Please try again.",
+    "errors": {
+      "unexpected": "An unexpected error occurred. Please try again."
+    }
+  },
   "privacy": {
     "pageTitle": "Privacy Policy",
     "pageSubtitle": "Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.",

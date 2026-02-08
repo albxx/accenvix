@@ -37,7 +37,7 @@ export function Footer() {
                 <span className="text-primary-foreground font-display font-bold text-xl">A</span>
               </div>
               <span className="font-display font-bold text-xl text-foreground">
-                Accenvix
+                Accenvix Solutions
               </span>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">

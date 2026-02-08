@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu, Package2 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
+import { ThemeSelector } from '@/components/admin/ThemeSelector'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -130,6 +131,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         {/* Header */}
         <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
           <div className="flex-1"></div>
+          <ThemeSelector />
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-medium">
               {user?.email?.charAt(0).toUpperCase() || 'A'}

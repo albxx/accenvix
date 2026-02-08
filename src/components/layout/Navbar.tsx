@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTranslation } from "react-i18next";
 
 const navLinks = [
@@ -53,9 +54,10 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Language Switcher and CTA Button */}
+          {/* Language Switcher, Theme Toggle and CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageSwitcher />
+            <ThemeToggle />
             <Button asChild className="gradient-primary hover:opacity-90 hover:shadow-glow transition-all duration-300 hover-lift">
               <Link to="/contact">{t('navigation.getStarted')}</Link>
             </Button>

@@ -59,10 +59,11 @@
     "missionContent2": "Kami memberdayakan individu dengan pengetahuan yang praktikal, relevan, dan boleh digunakan sambil membina perkongsian jangka panjang yang berteraskan kepercayaan, profesionalisme, dan hasil yang boleh diukur.",
     "vision": "Visi Kami",
     "visionContent": "Untuk menjadi rakan kongsi strategik yang dipercayai dalam latihan profesional, perundingan perniagaan, dan pembelajaran yang didayakan teknologi, yang dikenali kerana kualiti, integriti, dan impak jangka panjang.",
-    "coreValues": "Nilai Teras Kami",
-    "valuesHighlight": "",
+    "coreValues": "Nilai Teras",
+    "valuesHighlight": "Kami",
     "valuesDescription": "Prinsip yang membimbing segala yang kami lakukan.",
     "excellence": "Keunggulan",
+    "excellenceDesc": "Piawaian kualiti yang tidak berkompromi dan metodologi penghantaran berstruktur memastikan hasil yang konsisten dan luar biasa.",
     "innovation": "Inovasi",
     "innovationDesc": "Memelbrace teknologi baru dan penyelesaian kreatif untuk menyelesaikan cabaran perniagaan yang kompleks.",
     "integrity": "Integriti",
@@ -199,7 +200,7 @@
   "stats": {
     "projectsCompleted": "Projek Siap",
     "happyClients": "Pelanggan Berpuas Hati",
-    "yearsExperience": "Tahun Pengalaman",
+    "yearsExperience": "Lebih 15 Tahun",
     "clientSatisfaction": "Kepuasan Pelanggan",
     "projectsCompletedShort": "Projek",
     "happyClientsShort": "Pelanggan"
@@ -207,6 +208,34 @@
   "notFound": {
     "title": "Halaman Tidak Dijumpai",
     "returnHome": "Kembali ke Laman Utama"
+  },
+  "theme": {
+    "title": "Tema",
+    "mode": "Mod",
+    "dark": "Gelap",
+    "light": "Terang",
+    "accentColor": "Warna Aksen",
+    "colors": {
+      "blue": "Biru",
+      "orange": "Oren",
+      "purple": "Ungu",
+      "green": "Hijau",
+      "pink": "Merah Muda"
+    }
+  },
+  "login": {
+    "title": "Log Masuk Pentadbiran",
+    "description": "Log masuk untuk mengakses papan pemuka pengurusan projek",
+    "email": "E-mel",
+    "emailPlaceholder": "pentadbir@accenvix.com",
+    "password": "Kata Laluan",
+    "passwordPlaceholder": "********",
+    "signIn": "Log Masuk",
+    "signingIn": "Sedang log masuk...",
+    "errorOccurred": "Ralat tidak dijangka berlaku. Sila cuba lagi.",
+    "errors": {
+      "unexpected": "Ralat tidak dijangka berlaku. Sila cuba lagi."
+    }
   },
   "privacy": {
     "pageTitle": "Dasar Privasi",

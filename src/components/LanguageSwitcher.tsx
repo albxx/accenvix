@@ -9,8 +9,12 @@ export function LanguageSwitcher() {
   const [currentLanguage, setCurrentLanguage] = useState('ms');
 
   useEffect(() => {
-    // Set initial language from i18n
-    setCurrentLanguage(i18n.language);
+    // Set initial language from i18n or default to ms
+    const lng = i18n.language || 'ms';
+    setCurrentLanguage(lng);
+    if (!localStorage.getItem('i18nextLng')) {
+      i18n.changeLanguage('ms');
+    }
   }, [i18n.language]);
 
   const changeLanguage = (lng: string) => {
