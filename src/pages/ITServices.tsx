@@ -351,8 +351,8 @@ export default function ITServices() {
               <div className="bg-card border border-border rounded-2xl p-8 relative z-10">
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { value: "50+", labelKey: "services.itServices.projectsDelivered" },
-                    { value: "99%", labelKey: "services.itServices.uptimeGuarantee" },
+                    // { value: "50+", labelKey: "services.itServices.projectsDelivered" },
+                    // { value: "99%", labelKey: "services.itServices.uptimeGuarantee" },
                     { value: "24/7", labelKey: "services.itServices.support" },
                     { value: "15+", labelKey: "services.itServices.yearsExperience" },
                   ].map((stat, idx) => (
