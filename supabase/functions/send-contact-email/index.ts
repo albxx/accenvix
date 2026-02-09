@@ -191,7 +191,7 @@ serve(async (req: Request) => {
 
     // Send email to admin
     const adminEmail = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Contact Form <onboarding@accenvix.com>",
       to: ["mohd.albar.mohamed@gmail.com"],
       subject: "Contact Form: " + sanitizedSubject,
       html: "<h2>New Contact Form Submission</h2>" +
@@ -203,7 +203,7 @@ serve(async (req: Request) => {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: "Accenvix Solutions <onboarding@resend.dev>",
+      from: "Accenvix Solutions <onboarding@accenvix.com>",
       to: [data.email],
       subject: "Thank you for contacting us",
       html: "<h2>Thank you for reaching out!</h2>" +
