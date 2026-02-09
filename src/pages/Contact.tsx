@@ -42,7 +42,7 @@ const contactInfo = [
 ];
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -116,9 +116,11 @@ export default function Contact() {
           'Content-Type': 'application/json',
         },
         // Security: Include honeypot field (empty = human, filled = bot)
+        // Include current language for localized email responses
         body: JSON.stringify({
           ...formData,
           honeypot: honeypot,
+          lang: i18n.language || 'en',
         }),
       });
 

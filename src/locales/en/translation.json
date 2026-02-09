@@ -466,5 +466,48 @@
       "content": "If you have any questions about these Terms of Service, please contact us:",
       "email": "Email:"
     }
+  },
+  "email": {
+    "userConfirmation": {
+      "subject": "Message Received - ",
+      "thankYou": "Thank You, ",
+      "messageReceived": "We've received your message and we're excited to connect with you!",
+      "referenceNumber": "Reference Number",
+      "expectedResponse": "Expected Response",
+      "within24Hours": "Within 24-48 business hours",
+      "yourMessageSummary": "Your Message Summary",
+      "subject": "Subject:",
+      "whatHappensNext": "What Happens Next?",
+      "step1": "Our team reviews your inquiry",
+      "step2": "We'll craft a personalized response",
+      "step3": "Reach out to schedule a consultation",
+      "ourServices": "Our Services",
+      "webDevelopment": "Web Development",
+      "mobileApps": "Mobile Apps",
+      "dataAnalytics": "Data Analytics",
+      "bestRegards": "Best regards,",
+      "theAccenvixTeam": "The Accenvix Team"
+    },
+    "adminNotification": {
+      "subject": "New Inquiry [",
+      "newContactSubmission": "New Contact Form Submission",
+      "someoneContacted": "Someone has reached out through your website",
+      "contactDetails": "Contact Details",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "quickActions": "Quick Actions",
+      "replyNow": "Reply Now",
+      "viewInDashboard": "View in Dashboard"
+    },
+    "footer": {
+      "connectWithUs": "Connect with us",
+      "website": "Website",
+      "email": "Email",
+      "copyright": "© ",
+      "allRightsReserved": "All rights reserved.",
+      "location": "Kuala Lumpur, Malaysia"
+    }
   }
 }

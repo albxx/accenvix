@@ -467,5 +467,48 @@
       "content": "Jika anda mempunyai sebarang soalan mengenai Terma Perkhidmatan ini, sila hubungi kami:",
       "email": "E-mel:"
     }
+  },
+  "email": {
+    "userConfirmation": {
+      "subject": "Mesej Diterima - ",
+      "thankYou": "Terima Kasih, ",
+      "messageReceived": "Kami telah menerima mesej anda dan kami teruja untuk berhubung dengan anda!",
+      "referenceNumber": "Nombor Rujukan",
+      "expectedResponse": "Jangkaan Respons",
+      "within24Hours": "Dalam masa 24-48 jam perniagaan",
+      "yourMessageSummary": "Ringkasan Mesej Anda",
+      "subject": "Subjek:",
+      "whatHappensNext": "Apa yang Akan Berlanjut?",
+      "step1": "Pasukan kami menyemak pertanyaan anda",
+      "step2": "Kami akan menyediakan respons yang diperibadikan",
+      "step3": "Hubungi anda untuk menjadualkan rundingan",
+      "ourServices": "Perkhidmatan Kami",
+      "webDevelopment": "Pembangunan Web",
+      "mobileApps": "Aplikasi Mudah Alih",
+      "dataAnalytics": "Analitik Data",
+      "bestRegards": "Hormat kami,",
+      "theAccenvixTeam": "Pasukan Accenvix"
+    },
+    "adminNotification": {
+      "subject": "Pertanyaan Baru [",
+      "newContactSubmission": "Borang Hubungan Baru Dihantar",
+      "someoneContacted": "Seseorang telah menghubungi melalui laman web kami",
+      "contactDetails": "Butiran Hubungan",
+      "name": "Nama",
+      "email": "E-mel",
+      "subject": "Subjek",
+      "message": "Mesej",
+      "quickActions": "Tindakan Pantas",
+      "replyNow": "Balas Sekarang",
+      "viewInDashboard": "Lihat di Papan Pemuka"
+    },
+    "footer": {
+      "connectWithUs": "Hubungi kami",
+      "website": "Laman Web",
+      "email": "E-mel",
+      "copyright": "© ",
+      "allRightsReserved": "Hakcipta terpelihara.",
+      "location": "Kuala Lumpur, Malaysia"
+    }
   }
 }

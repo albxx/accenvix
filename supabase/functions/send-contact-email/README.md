@@ -7,7 +7,7 @@ This Supabase Edge Function sends contact form emails using Resend.
 ### 1. Get Resend API Key
 1. Sign up at https://resend.com
 2. Get your API key from the dashboard
-3. For testing, you can use `onboarding@resend.dev` as the sender
+3. For testing, you can use `onboarding@accenvix.com` as the sender
 
 ### 2. Add Environment Variable
 In your Supabase dashboard, go to **Settings > Edge Functions** and add:
