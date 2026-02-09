@@ -3,6 +3,336 @@ import { Resend } from "npm:resend@^3.2.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+// ============================================
+// EMAIL TEMPLATE HELPERS
+// ============================================
+
+const EMAIL_STYLES = {
+  primaryColor: "#1a1a2e",
+  secondaryColor: "#16213e",
+  accentColor: "#e94560",
+  textColor: "#333333",
+  lightTextColor: "#666666",
+  backgroundColor: "#f8f9fa",
+  white: "#ffffff",
+  borderColor: "#e0e0e0",
+};
+
+function generateTicketNumber(): string {
+  const timestamp = Date.now().toString(36).toUpperCase();
+  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `TKT-${timestamp}-${random}`;
+}
+
+function getEmailHeader(logoUrl?: string): string {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Confirmation</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: ${EMAIL_STYLES.backgroundColor};">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; margin: 0 auto; background-color: ${EMAIL_STYLES.white}; border-collapse: collapse;">
+    <!-- Header -->
+    <tr>
+      <td style="background: linear-gradient(135deg, ${EMAIL_STYLES.primaryColor} 0%, ${EMAIL_STYLES.secondaryColor} 100%); padding: 40px 30px; text-align: center;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center;">
+              ${logoUrl ? `<img src="${logoUrl}" alt="Accenvix Solutions" width="180" style="display: block; margin: 0 auto; max-width: 180px; height: auto;">` : ''}
+              <h1 style="margin: 20px 0 0 0; color: ${EMAIL_STYLES.white}; font-size: 28px; font-weight: 700; letter-spacing: 1px;">ACCENVIX SOLUTIONS</h1>
+              <p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.8); font-size: 14px; letter-spacing: 2px; text-transform: uppercase;">Innovating Digital Experiences</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+`;
+}
+
+function getEmailFooter(): string {
+  return `
+    <!-- Footer -->
+    <tr>
+      <td style="background-color: ${EMAIL_STYLES.primaryColor}; padding: 30px; text-align: center;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center; padding-bottom: 20px;">
+              <p style="color: ${EMAIL_STYLES.white}; font-size: 14px; margin: 0 0 10px 0;">Connect with us</p>
+              <a href="https://accenvix.com" style="color: ${EMAIL_STYLES.accentColor}; text-decoration: none; font-size: 14px; margin: 0 10px;">Website</a>
+              <span style="color: rgba(255,255,255,0.3);">|</span>
+              <a href="mailto:info@accenvix.com" style="color: ${EMAIL_STYLES.accentColor}; text-decoration: none; font-size: 14px; margin: 0 10px;">Email</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+              <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin: 0 0 5px 0;">&copy; ${new Date().getFullYear()} Accenvix Solutions. All rights reserved.</p>
+              <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin: 0;">Kuala Lumpur, Malaysia</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+`;
+}
+
+function getConfirmationEmailBody(
+  name: string,
+  ticketNumber: string,
+  message: string,
+  originalSubject: string
+): string {
+  const messagePreview = message.length > 300 ? message.substring(0, 300) + '...' : message;
+  
+  return `
+    <!-- Main Content -->
+    <tr>
+      <td style="padding: 40px 40px 20px 40px;">
+        <!-- Success Icon -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center; padding-bottom: 30px;">
+              <div style="display: inline-block; width: 80px; height: 80px; background-color: ${EMAIL_STYLES.accentColor}; border-radius: 50%; text-align: center; line-height: 80px;">
+                <span style="color: ${EMAIL_STYLES.white}; font-size: 36px;">&#10003;</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Confirmation Message -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center; padding-bottom: 30px;">
+              <h2 style="margin: 0 0 15px 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 26px; font-weight: 600;">Thank You, ${escapeHtml(name)}!</h2>
+              <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 16px; line-height: 1.6;">
+                We've received your message and we're excited to connect with you!
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Ticket Information -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: ${EMAIL_STYLES.backgroundColor}; border-radius: 12px; margin-bottom: 30px;">
+          <tr>
+            <td style="padding: 25px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="padding-bottom: 15px; border-bottom: 1px solid ${EMAIL_STYLES.borderColor};">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Reference Number</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 18px; font-weight: 600; font-family: 'Courier New', monospace;">${ticketNumber}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 15px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Expected Response</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 16px; font-weight: 500;">Within 24-48 business hours</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Message Summary -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+          <tr>
+            <td style="padding-bottom: 15px;">
+              <p style="margin: 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 14px; font-weight: 600;">Your Message Summary</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: ${EMAIL_STYLES.backgroundColor}; border-radius: 8px; padding: 20px; border-left: 4px solid ${EMAIL_STYLES.accentColor};">
+              <p style="margin: 0 0 10px 0; color: ${EMAIL_STYLES.textColor}; font-size: 14px;">
+                <strong style="color: ${EMAIL_STYLES.primaryColor};">Subject:</strong> ${escapeHtml(originalSubject)}
+              </p>
+              <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 14px; line-height: 1.6;">
+                ${escapeHtml(messagePreview).replace(/\n/g, '<br>')}
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- What Happens Next -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background: linear-gradient(135deg, ${EMAIL_STYLES.secondaryColor} 0%, ${EMAIL_STYLES.primaryColor} 100%); border-radius: 12px; margin-bottom: 30px;">
+          <tr>
+            <td style="padding: 25px;">
+              <p style="margin: 0 0 15px 0; color: ${EMAIL_STYLES.white}; font-size: 16px; font-weight: 600;">What Happens Next?</p>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="padding-bottom: 10px;">
+                    <span style="display: inline-block; width: 24px; height: 24px; background-color: ${EMAIL_STYLES.accentColor}; color: ${EMAIL_STYLES.white}; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 10px;">1</span>
+                    <span style="color: rgba(255,255,255,0.9); font-size: 14px;">Our team reviews your inquiry</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom: 10px;">
+                    <span style="display: inline-block; width: 24px; height: 24px; background-color: ${EMAIL_STYLES.accentColor}; color: ${EMAIL_STYLES.white}; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 10px;">2</span>
+                    <span style="color: rgba(255,255,255,0.9); font-size: 14px;">We'll craft a personalized response</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display: inline-block; width: 24px; height: 24px; background-color: ${EMAIL_STYLES.accentColor}; color: ${EMAIL_STYLES.white}; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 10px;">3</span>
+                    <span style="color: rgba(255,255,255,0.9); font-size: 14px;">Reach out to schedule a consultation</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Services Highlight -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+          <tr>
+            <td style="text-align: center; padding-bottom: 20px;">
+              <p style="margin: 0 0 20px 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 14px; font-weight: 600;">Our Services</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="width: 33.33%; text-align: center; padding: 10px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.accentColor}; font-size: 20px;">&#9881;</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px;">Web Development</p>
+                  </td>
+                  <td style="width: 33.33%; text-align: center; padding: 10px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.accentColor}; font-size: 20px;">&#128241;</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px;">Mobile Apps</p>
+                  </td>
+                  <td style="width: 33.33%; text-align: center; padding: 10px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.accentColor}; font-size: 20px;">&#128202;</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px;">Data Analytics</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Closing -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center; padding-top: 20px; border-top: 1px solid ${EMAIL_STYLES.borderColor};">
+              <p style="margin: 0 0 10px 0; color: ${EMAIL_STYLES.textColor}; font-size: 16px;">Best regards,</p>
+              <p style="margin: 0; color: ${EMAIL_STYLES.accentColor}; font-size: 18px; font-weight: 600;">The Accenvix Team</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+`;
+}
+
+function getAdminNotificationBody(
+  name: string,
+  email: string,
+  subject: string,
+  message: string,
+  ticketNumber: string
+): string {
+  const messageWithBreaks = escapeHtml(message).replace(/\n/g, '<br>');
+  
+  return `
+    <!-- Main Content -->
+    <tr>
+      <td style="padding: 40px 40px 20px 40px;">
+        <!-- Notification Header -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="text-align: center; padding-bottom: 30px;">
+              <div style="display: inline-block; width: 70px; height: 70px; background-color: ${EMAIL_STYLES.accentColor}; border-radius: 50%; text-align: center; line-height: 70px; margin-bottom: 20px;">
+                <span style="color: ${EMAIL_STYLES.white}; font-size: 28px;">&#9993;</span>
+              </div>
+              <h2 style="margin: 0 0 15px 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 24px; font-weight: 600;">New Contact Form Submission</h2>
+              <p style="margin: 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 14px;">Someone has reached out through your website</p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Ticket Badge -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 30px;">
+          <tr>
+            <td style="text-align: center;">
+              <span style="display: inline-block; background-color: ${EMAIL_STYLES.primaryColor}; color: ${EMAIL_STYLES.white}; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; font-family: 'Courier New', monospace;">${ticketNumber}</span>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Contact Details -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: ${EMAIL_STYLES.backgroundColor}; border-radius: 12px; margin-bottom: 30px;">
+          <tr>
+            <td style="padding: 25px;">
+              <p style="margin: 0 0 20px 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 14px; font-weight: 600; border-bottom: 2px solid ${EMAIL_STYLES.accentColor}; padding-bottom: 10px;">Contact Details</p>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td style="padding-bottom: 12px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Name</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.textColor}; font-size: 16px; font-weight: 500;">${escapeHtml(name)}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom: 12px;">
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Email</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.textColor}; font-size: 16px;"><a href="mailto:${escapeHtml(email)}" style="color: ${EMAIL_STYLES.accentColor}; text-decoration: none;">${escapeHtml(email)}</a></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p style="margin: 0 0 5px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Subject</p>
+                    <p style="margin: 0; color: ${EMAIL_STYLES.textColor}; font-size: 16px; font-weight: 500;">${escapeHtml(subject)}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Message -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td style="padding-bottom: 15px;">
+              <p style="margin: 0; color: ${EMAIL_STYLES.primaryColor}; font-size: 14px; font-weight: 600;">Message</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: ${EMAIL_STYLES.backgroundColor}; border-radius: 8px; padding: 20px; border-left: 4px solid ${EMAIL_STYLES.accentColor};">
+              <p style="margin: 0; color: ${EMAIL_STYLES.textColor}; font-size: 14px; line-height: 1.7;">
+                ${messageWithBreaks}
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Quick Actions -->
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top: 30px;">
+          <tr>
+            <td style="text-align: center; padding-top: 20px; border-top: 1px solid ${EMAIL_STYLES.borderColor};">
+              <p style="margin: 0 0 15px 0; color: ${EMAIL_STYLES.lightTextColor}; font-size: 12px;">Quick Actions</p>
+              <a href="mailto:${escapeHtml(email)}?subject=Re: ${encodeURIComponent(subject)}" style="display: inline-block; background-color: ${EMAIL_STYLES.accentColor}; color: ${EMAIL_STYLES.white}; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; margin-right: 10px;">Reply Now</a>
+              <a href="https://accenvix.com/admin" style="display: inline-block; background-color: ${EMAIL_STYLES.primaryColor}; color: ${EMAIL_STYLES.white}; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500;">View in Dashboard</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+`;
+}
+
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
@@ -188,30 +518,30 @@ serve(async (req: Request) => {
     const sanitizedName = escapeHtml(data.name);
     const sanitizedSubject = sanitizeHeader(data.subject);
     const sanitizedMessage = escapeHtml(data.message).slice(0, 2000);
+    const ticketNumber = generateTicketNumber();
 
-    // Send email to admin
+    // Send enhanced admin notification email
+    const adminEmailHtml = getEmailHeader() + 
+                          getAdminNotificationBody(data.name, data.email, data.subject, data.message, ticketNumber) + 
+                          getEmailFooter();
+    
     const adminEmail = await resend.emails.send({
       from: "Contact Form <onboarding@accenvix.com>",
       to: ["mohd.albar.mohamed@gmail.com"],
-      subject: "Contact Form: " + sanitizedSubject,
-      html: "<h2>New Contact Form Submission</h2>" +
-            "<p><strong>Name:</strong> " + sanitizedName + "</p>" +
-            "<p><strong>Email:</strong> " + escapeHtml(data.email) + "</p>" +
-            "<p><strong>Subject:</strong> " + sanitizedSubject + "</p>" +
-            "<hr /><h3>Message:</h3><p>" + sanitizedMessage.replace(/\n/g, "<br>") + "</p>",
+      subject: `New Inquiry [${ticketNumber}]: ${sanitizedSubject}`,
+      html: adminEmailHtml,
     });
 
-    // Send confirmation email to user
+    // Send professional confirmation email to user
+    const userEmailHtml = getEmailHeader() + 
+                         getConfirmationEmailBody(data.name, ticketNumber, data.message, data.subject) + 
+                         getEmailFooter();
+    
     await resend.emails.send({
       from: "Accenvix Solutions <onboarding@accenvix.com>",
       to: [data.email],
-      subject: "Thank you for contacting us",
-      html: "<h2>Thank you for reaching out!</h2>" +
-            "<p>Hi " + sanitizedName + ",</p>" +
-            "<p>We've received your message and will get back to you as soon as possible.</p>" +
-            "<hr /><p><strong>Your message:</strong></p>" +
-            "<p>" + sanitizedMessage.replace(/\n/g, "<br>") + "</p>" +
-            "<hr /><p>Best regards,<br>The Accenvix Team</p>",
+      subject: `Message Received - ${ticketNumber}`,
+      html: userEmailHtml,
     });
 
     return new Response(
