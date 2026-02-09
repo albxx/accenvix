@@ -18,7 +18,6 @@ const TRANSLATIONS = {
         expectedResponse: "Expected Response",
         within24Hours: "Within 24-48 business hours",
         yourMessageSummary: "Your Message Summary",
-        subject: "Subject:",
         whatHappensNext: "What Happens Next?",
         step1: "Our team reviews your inquiry",
         step2: "We'll craft a personalized response",
@@ -37,7 +36,6 @@ const TRANSLATIONS = {
         contactDetails: "Contact Details",
         name: "Name",
         email: "Email",
-        subject: "Subject",
         message: "Message",
         quickActions: "Quick Actions",
         replyNow: "Reply Now",
@@ -63,7 +61,6 @@ const TRANSLATIONS = {
         expectedResponse: "Jangkaan Respons",
         within24Hours: "Dalam masa 24-48 jam perniagaan",
         yourMessageSummary: "Ringkasan Mesej Anda",
-        subject: "Subjek:",
         whatHappensNext: "Apa yang Akan Berlanjut?",
         step1: "Pasukan kami menyemak pertanyaan anda",
         step2: "Kami akan menyediakan respons yang diperibadikan",
@@ -82,7 +79,6 @@ const TRANSLATIONS = {
         contactDetails: "Butiran Hubungan",
         name: "Nama",
         email: "E-mel",
-        subject: "Subjek",
         message: "Mesej",
         quickActions: "Tindakan Pantas",
         replyNow: "Balas Sekarang",
@@ -146,7 +142,7 @@ var rateLimitStore = new Map();
 var RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 var MAX_REQUESTS_PER_WINDOW = 3;
 var ALLOWED_ORIGINS = [
-  "https://accenvix.com",
+  "https://www.accenvix.com",
   "http://localhost:5173",
   "http://localhost:3000",
 ];
@@ -333,7 +329,7 @@ serve(async function(req: Request) {
                          getEmailFooter(t);
     
     var adminEmailResult = await resend.emails.send({
-      from: "Contact Form <onboarding@accenvix.com>",
+      from: "Accenvix Solutions Contact Form <onboarding@accenvix.com>",
       to: ["hello@accenvix.com"],
       cc: ["mohd.albar.mohamed@gmail.com"],
       subject: t.email.adminNotification.subject + ticketNumber + "]: " + sanitizedSubject,
