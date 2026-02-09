@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-import { Resend } from "jsr:@resend/resend@3.2.0";
+import { Resend } from "npm:resend@^3.2.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -28,41 +28,8 @@ serve(async (req: Request) => {
     });
   }
 
-  // Verify authorization (optional for public contact form)
-  // For extra security, you can validate JWT token here if needed
-  // For public contact form, we'll allow unauthenticated requests
-  const authHeader = req.headers.get("Authorization");
-  const supabaseUrl = Deno.env.get("SUPABASE_URL");
-  const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-  
-  // If Authorization header is provided, validate the JWT
-  if (authHeader && authHeader.startsWith("Bearer ")) {
-    const token = authHeader.replace("Bearer ", "");
-    try {
-      // Validate JWT with Supabase
-      const jwtValidationResponse = await fetch(
-        `${supabaseUrl}/auth/v1/token/verify`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${supabaseServiceKey}`,
-          },
-          body: JSON.stringify({ token }),
-        }
-      );
-      
-      if (!jwtValidationResponse.ok) {
-        return new Response(
-          JSON.stringify({ error: "Invalid authorization token" }),
-          { status: 401, headers }
-        );
-      }
-    } catch (error) {
-      console.error("JWT validation error:", error);
-      // Continue anyway - public endpoint allows unauthenticated access
-    }
-  }
+  // This is a public endpoint - no authentication required
+  // Contact form should be accessible to everyone
 
   try {
     const data: ContactFormData = await req.json();

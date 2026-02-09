@@ -19,10 +19,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check active session
     const checkSession = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser()
-        setUser(user)
+        const { data: { user }, error } = await supabase.auth.getUser()
+        if (error) {
+          // Handle invalid/expired session
+          console.log('Session invalid, clearing:', error.message)
+          await supabase.auth.signOut()
+          setUser(null)
+        } else {
+          setUser(user)
+        }
       } catch (error) {
         console.error('Error checking session:', error)
+        setUser(null)
       } finally {
         setLoading(false)
       }
