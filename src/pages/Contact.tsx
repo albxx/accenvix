@@ -49,14 +49,21 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
-  // Email validation regex pattern
+  // Security: Improved email validation (RFC 5322 inspired)
   const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    const emailRegex = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]*@[a-zA-Z0-9][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email) && email.length <= 100;
+  };
+
+  // Security: Validate name format
+  const isValidName = (name: string): boolean => {
+    const nameRegex = /^[a-zA-Z\s\-'.()]{1,100}$/;
+    return nameRegex.test(name);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -66,12 +73,33 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate email format
+
+    // Security: Validate name format
+    if (!isValidName(formData.name)) {
+      toast({
+        title: "Invalid Name",
+        description: "Please enter a valid name (letters, spaces, hyphens only).",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Security: Validate email format
     if (!isValidEmail(formData.email)) {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Security: Validate field lengths
+    if (formData.name.length > 100 || formData.email.length > 100 || 
+        formData.subject.length > 200 || formData.message.length > 2000) {
+      toast({
+        title: "Input Too Long",
+        description: "One or more fields exceed maximum length.",
         variant: "destructive",
       });
       return;
@@ -87,10 +115,25 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        // Security: Include honeypot field (empty = human, filled = bot)
+        body: JSON.stringify({
+          ...formData,
+          honeypot: honeypot,
+        }),
       });
 
       const result = await response.json();
+
+      // Security: Handle rate limiting
+      if (response.status === 429) {
+        toast({
+          title: "Too Many Requests",
+          description: "Please wait a moment before trying again.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to send message');
@@ -106,6 +149,7 @@ export default function Contact() {
       // Reset form after delay
       setTimeout(() => {
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setHoneypot("");
         setIsSubmitted(false);
       }, 3000);
     } catch (error) {
@@ -160,6 +204,20 @@ export default function Contact() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Security: Honeypot field - hidden from real users, traps bots */}
+                    <div style={{ position: 'absolute', left: '-9999px', opacity: 0 }}>
+                      <label htmlFor="honeypot">Leave this empty</label>
+                      <input
+                        type="text"
+                        id="honeypot"
+                        name="honeypot"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                      />
+                    </div>
+
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name">{t('contact.fullName')}</Label>
