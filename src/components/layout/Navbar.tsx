@@ -66,6 +66,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher />
+            <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-foreground hover:text-primary transition-colors duration-300 hover:shadow-glow rounded-lg"

@@ -21,7 +21,7 @@ const accentColors: Record<AccentColor, { primary: string; accent: string }> = {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>('dark')
   const [accentColor, setAccentColor] = useState<AccentColor>('blue')
 
   useEffect(() => {
