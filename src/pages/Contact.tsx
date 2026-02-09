@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/lib/supabase/client";
 
 interface FormData {
   name: string;
@@ -53,6 +54,12 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
+  // Email validation regex pattern
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -60,28 +67,57 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate email format
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual API call in Phase 2)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Use Supabase client to call the edge function
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${(await supabase.auth.getSession()).data.session?.access_token || import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Store in localStorage for now
-    const submissions = JSON.parse(localStorage.getItem("contactSubmissions") || "[]");
-    submissions.push({ ...formData, submittedAt: new Date().toISOString() });
-    localStorage.setItem("contactSubmissions", JSON.stringify(submissions));
+      const result = await response.json();
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
 
-    // Reset form after short delay
-    setTimeout(() => {
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "We've sent a confirmation to your email. We'll get back to you soon.",
+      });
+
+      // Reset form after delay
+      setTimeout(() => {
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -141,16 +177,17 @@ export default function Contact() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">{t('contact.emailAddress')}</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder={t('contact.emailAddress')}
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="bg-background"
-                        />
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder={t('contact.emailAddress')}
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        maxLength={100}
+                        className="bg-background"
+                      />
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -162,6 +199,7 @@ export default function Contact() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
+                        maxLength={200}
                         className="bg-background"
                       />
                     </div>
@@ -174,9 +212,13 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
+                        maxLength={2000}
                         rows={6}
                         className="bg-background resize-none"
                       />
+                      <div className="text-xs text-muted-foreground text-right">
+                        {formData.message.length}/2000
+                      </div>
                     </div>
                     <Button
                       type="submit"
@@ -212,12 +254,12 @@ export default function Contact() {
                   {contactInfo.map((info, index) => (
                     <div
                       key={index}
-                      className="flex gap-4 p-4 bg-card border border-border rounded-xl hover-lift"
+                      className="flex flex-col sm:flex-row gap-4 p-4 bg-card border border-border rounded-xl hover-lift"
                     >
                       <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shrink-0 group-hover:shadow-glow transition-all duration-300">
                         <info.icon className="text-primary-foreground" size={20} />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="font-medium text-foreground mb-1">{t(info.titleKey)}</h3>
                         {info.href ? (
                           <a

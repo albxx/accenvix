@@ -7,6 +7,10 @@ Maintaining and updating the memory bank documentation to reflect the newly impl
 - Initialized memory bank structure
 - Created core documentation files based on .clinerules framework
 - Established project brief and product context
+- **FIXED**: Contact form email sending 401 error
+  - Updated Edge Function to allow optional JWT validation (public endpoint)
+  - Modified frontend to properly use authenticated session token with fallback to anon key
+  - Added proper Authorization header handling with Bearer token format
 
 ## Next Steps
 1. Review existing project structure and files to understand current state
@@ -37,3 +41,6 @@ Maintaining and updating the memory bank documentation to reflect the newly impl
 - Admin interface follows consistent design patterns with reusable components
 - Data visualization capabilities through Recharts integration
 - Comprehensive CRUD operations implemented across admin features
+- **Supabase Edge Functions** require proper Authorization headers with Bearer tokens
+- For public endpoints like contact forms, authentication should be optional but validate tokens when provided
+- Frontend should prefer authenticated session tokens and fall back to anon key for public access

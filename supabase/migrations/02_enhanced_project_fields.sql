@@ -37,7 +37,6 @@ create table if not exists milestones (
 
 -- Create project team assignments table
 create table if not exists project_team_assignments (
-  id uuid default uuid_generate_v4() primary key,
   project_id uuid references projects(id) on delete cascade,
   team_member_id uuid references team_members(id) on delete cascade,
   role text check (role in ('project_manager', 'team_member', 'stakeholder')) default 'team_member',

@@ -1,0 +1,5 @@
+{
+  "name": "send-contact-email",
+  "version": "0.1.0",
+  "description": "Sends contact form emails via Resend"
+}
