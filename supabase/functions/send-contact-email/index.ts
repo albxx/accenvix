@@ -329,9 +329,8 @@ serve(async function(req: Request) {
                          getEmailFooter(t);
     
     var adminEmailResult = await resend.emails.send({
-      from: "Accenvix Solutions Contact Form <onboarding@accenvix.com>",
+      from: "Accenvix Solutions Contact Form <onboarding@resend.dev>",
       to: ["hello@accenvix.com"],
-      cc: ["mohd.albar.mohamed@gmail.com"],
       subject: t.email.adminNotification.subject + ticketNumber + "]: " + sanitizedSubject,
       html: adminEmailHtml,
     });
@@ -347,7 +346,7 @@ serve(async function(req: Request) {
                         getEmailFooter(t);
     
     var userEmailResult = await resend.emails.send({
-      from: "Accenvix Solutions <onboarding@accenvix.com>",
+      from: "Accenvix Solutions <onboarding@resend.dev>",
       to: [data.email],
       subject: t.email.userConfirmation.subject + ticketNumber,
       html: userEmailHtml,
