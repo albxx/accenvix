@@ -45,10 +45,13 @@
     "onTimeDelivery": "On-Time Delivery"
   },
   "about": {
-    "pageTitle": "About Accenvix Solutions",
-    "pageSubtitle": "We're a passionate team of tech enthusiasts dedicated to building innovative solutions that empower businesses to thrive in the digital age.",
+    "pageTitle": "About AccEnvix",
+    "pageSubtitle": "Empowering businesses with innovative IT solutions and professional consulting services.",
     "our": "Our",
     "storyHighlight": "Story",
+    "teamTitle": "Meet Our",
+    "teamHighlight": "Team",
+    "teamSubtitle": "The talented people behind Accenvix Solutions.",
     "storyContent1": "Founded in 2025, Accenvix Solutions is a professional services firm focused on capacity building, business transformation, and learning innovation. We bridge the gap between skills development, technology enablement, and practical business application.",
     "storyContent2": "Based in Johor Bahru, Malaysia, we're supported by a leadership and consulting team with more than 15 years of combined experience across Information Technology (IT), business and financial consulting, and learning development.",
     "storyContent3": "By combining strategic thinking, practical execution, and technology-enabled learning, we deliver integrated solutions that support professional services excellence, talent sustainability, and long-term business performance.",

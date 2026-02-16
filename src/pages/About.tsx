@@ -44,7 +44,7 @@ const team = [
   },
   {
     name: "Ungku Badhrul Hisham Ungku Abdul Rahim",
-    role: "Director, Sales & Marketing & Professional Trainer",
+    role: "Director, Sales & Marketing & Associate Trainer",
     bio: "Extensive experience in the banking and financial sector, complemented by strong expertise in professional training and sales and marketing.",
   },
   {
@@ -59,7 +59,7 @@ const team = [
   },
   {
     name: "Mohd Albar Mohamed",
-    role: "Consultant, Technology Solution",
+    role: "Chief Technology Officer, Technology Solution",
     bio: "Solid experience in IT solutions and system development for both small-scale and enterprise-level environments.",
   },
 ];
@@ -228,15 +228,15 @@ export default function About() {
       </section>
 
       {/* Team Section - Temporarily Disabled */}
-      {/*
+      
       <section className="py-20 md:py-28 bg-card/50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Meet Our <span className="text-gradient">Team</span>
+              {t('about.teamTitle')} <span className="text-gradient">{t('about.teamHighlight')}</span>
             </h2>
             <p className="text-muted-foreground">
-              The talented people behind Accenvix Solutions.
+              {t('about.teamSubtitle')}
             </p>
           </div>
 
@@ -264,7 +264,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      */}
+    
     </Layout>
   );
 }

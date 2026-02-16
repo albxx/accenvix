@@ -108,9 +108,12 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Use Supabase client to call the edge function
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const response = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+      // Use mock API endpoint for local development
+      const apiUrl = import.meta.env.DEV 
+        ? 'http://localhost:3001/api/send-email' 
+        : '/api/send-email';
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
