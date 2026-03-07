@@ -2,6 +2,7 @@ import { Users, Target, Eye, Award, Rocket, Heart, Shield, Lightbulb } from "luc
 import { Layout } from "@/components/layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 const values = [
   {
@@ -65,6 +66,12 @@ const team = [
 ];
 
 export default function About() {
+  useSEO({
+    title: "About Us",
+    description: "Learn about Accenvix Solutions - a leading provider of professional training, business consulting, and digital transformation services in Malaysia.",
+    keywords: "about Accenvix, training company Malaysia, business consulting Malaysia, our team",
+  });
+
   const { t } = useTranslation();
 
   const values = [

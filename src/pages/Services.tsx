@@ -4,8 +4,15 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 export default function Services() {
+  useSEO({
+    title: "Services",
+    description: "Explore our professional training, business consulting, and IT services designed to transform your organization in Malaysia.",
+    keywords: "professional training, business consulting, IT services, digital transformation, Malaysia",
+  });
+
   const { t } = useTranslation();
 
   const services = [

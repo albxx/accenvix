@@ -1,7 +1,14 @@
 import { Layout } from "@/components/layout";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 export default function Terms() {
+  useSEO({
+    title: "Terms of Service",
+    description: "Read Accenvix Solutions Terms of Service to understand the terms and conditions governing the use of our services.",
+    keywords: "terms of service, terms and conditions, user agreement",
+  });
+
   const { t } = useTranslation();
 
   return (

@@ -6,11 +6,15 @@ import { Layout } from "@/components/layout";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
-
-
-
+import { useSEO } from "@/components/Seo";
 
 export default function Index() {
+  useSEO({
+    title: "Home",
+    description: "Accenvix Solutions empowers individuals and organizations with professional training, business consulting, and technology-enabled learning services in Malaysia.",
+    keywords: "professional training, business consulting, digital transformation, IT consulting, Malaysia",
+  });
+
   const { t } = useTranslation();
 
   const services = [

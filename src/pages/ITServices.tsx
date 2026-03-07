@@ -23,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 const techStack = {
   frontend: ["React", "Vue.js", "Angular", "Next.js", "TypeScript"],
@@ -34,6 +35,12 @@ const techStack = {
 };
 
 export default function ITServices() {
+  useSEO({
+    title: "IT Services",
+    description: "Explore our comprehensive IT services including web development, mobile apps, cloud solutions, cybersecurity, and digital transformation in Malaysia.",
+    keywords: "IT services, web development, mobile app development, cloud solutions, cybersecurity, Malaysia technology",
+  });
+
   const { t } = useTranslation();
 
   const services = [

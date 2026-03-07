@@ -11,12 +11,21 @@ Maintaining and updating the memory bank documentation to reflect the newly impl
   - Updated Edge Function to allow optional JWT validation (public endpoint)
   - Modified frontend to properly use authenticated session token with fallback to anon key
   - Added proper Authorization header handling with Bearer token format
+- **FIXED**: React Router v7 future flag warnings
+  - Added `v7_startTransition` and `v7_relativeSplatPath` future flags to BrowserRouter
+- **FIXED**: Auth session error handling
+  - Improved AuthContext to handle "Auth session missing!" gracefully
+  - Changed from getUser() to getSession() for better session checking
+- **ADDED**: JSON-LD Structured Data
+  - LocalBusiness schema with company info, address, hours, geo coordinates
+  - Service schema listing all offered services
+  - Added sameAs social media links (placeholder URLs)
 
-## Next Steps
-1. Review existing project structure and files to understand current state
-2. Identify gaps between planned architecture and current implementation
-3. Update documentation to reflect newly implemented admin features
-4. Ensure all memory bank files are consistent with current implementation
+## Next Steps (SEO & Marketing)
+1. Submit sitemap to Google Search Console
+2. Set up Google Analytics
+3. Create a Google Business Profile
+4. Consider adding more JSON-LD schemas (FAQ, Review, etc.)
 
 ## Active Decisions and Considerations
 - Following the established .clinerules framework for documentation

@@ -1,7 +1,14 @@
 import { Layout } from "@/components/layout";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 export default function Privacy() {
+  useSEO({
+    title: "Privacy Policy",
+    description: "Read our privacy policy to understand how Accenvix Solutions collects, uses, and protects your personal information.",
+    keywords: "privacy policy, data protection, personal information, GDPR",
+  });
+
   const { t } = useTranslation();
 
   return (

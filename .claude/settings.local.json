@@ -7,7 +7,12 @@
       "Bash(supabase link --project-ref=falwqgxcjicucvjencrx)",
       "Bash(supabase db push)",
       "Bash(supabase status)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(for file in src/pages/*.tsx)",
+      "Bash(do echo \"=== $file ===\")",
+      "Read(//c/Users/albar.mohamed/projects/accenvix_solutions/accenvix/**)",
+      "Bash(done)",
+      "Bash(xxd:*)"
     ]
   }
 }

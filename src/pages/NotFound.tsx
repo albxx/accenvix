@@ -1,8 +1,15 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 const NotFound = () => {
+  useSEO({
+    title: "Page Not Found",
+    description: "The page you are looking for does not exist. Return to Accenvix Solutions homepage.",
+    keywords: "404, page not found",
+  });
+
   const location = useLocation();
   const { t } = useTranslation();
 

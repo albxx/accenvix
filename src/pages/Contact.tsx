@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 interface FormData {
   name: string;
@@ -42,6 +43,12 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  useSEO({
+    title: "Contact Us",
+    description: "Get in touch with Accenvix Solutions for professional training, business consulting, and digital transformation services in Malaysia.",
+    keywords: "contact Accenvix, get in touch, training consultation, business consulting Malaysia",
+  });
+
   const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",

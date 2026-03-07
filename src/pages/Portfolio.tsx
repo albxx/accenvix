@@ -4,6 +4,7 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
+import { useSEO } from "@/components/Seo";
 
 const projects = [
   {
@@ -79,6 +80,12 @@ const projects = [
 ];
 
 export default function Portfolio() {
+  useSEO({
+    title: "Portfolio",
+    description: "View our portfolio of successful projects in education technology, web development, mobile apps, and digital transformation solutions in Malaysia.",
+    keywords: "portfolio, case studies, projects, web development, mobile apps, Malaysia",
+  });
+
   const { t } = useTranslation();
 
   const projects = [
