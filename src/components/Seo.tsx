@@ -190,7 +190,7 @@ export function useSEO({
 
     // Cleanup on unmount
     return () => {
-      document.title = 'Accenvix Solutions | Professional Training, Business Consulting & Digital Transformation';
+      document.title = 'Accenvix Solutions | Professional Training & Consulting';
       // Clean up schema scripts on unmount
       const schemas = document.querySelectorAll('script[type="application/ld+json"]');
       schemas.forEach(script => script.remove());
