@@ -11,7 +11,7 @@ import { useSEO } from "@/components/Seo";
 export default function Index() {
   useSEO({
     title: "Home",
-    description: "Accenvix Solutions empowers individuals and organizations with professional training, business consulting, and technology-enabled learning services in Malaysia.",
+    description: "Accenvix Solutions provides professional training, business consulting, and digital transformation services in Malaysia. Transform your business today.",
     keywords: "professional training, business consulting, digital transformation, IT consulting, Malaysia",
   });
 
