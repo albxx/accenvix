@@ -14,10 +14,16 @@ export default defineConfig({
     port: 8080,
     // Custom middleware to handle API requests during development
     middlewareMode: false,
+    headers: {
+      'X-Frame-Options': 'DENY',
+      'X-Content-Type-Options': 'nosniff',
+      'X-XSS-Protection': '1; mode=block',
+      'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co"
+    },
   },
   build: {
     rollupOptions: {
-      external: ['sharp'], // Exclude sharp from build as it's optional
+      external: ['sharp'], // Exclude sharp from it's optional
     }
   }
 })
