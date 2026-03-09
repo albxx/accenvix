@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         
         if (error) {
           // Handle invalid/expired session gracefully
-          console.log('Session check:', error.message)
+          // Removed console.log for production - handle errors silently
           setUser(null)
         } else if (session) {
           // Only set user if we have a valid session

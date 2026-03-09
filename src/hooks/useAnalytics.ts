@@ -40,7 +40,7 @@ export const useAnalytics = () => {
 export const trackCustomEvent = (eventName: string, eventParams?: Record<string, unknown>) => {
   // Check for placeholder IDs
   if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX' || GA_MEASUREMENT_ID === 'G-MEASUREMENT_ID') {
-    console.log('Google Analytics [Placeholder]: Custom Event:', eventName, eventParams);
+    // Removed console.log for production - placeholder detection only
     return;
   }
 

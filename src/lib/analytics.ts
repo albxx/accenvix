@@ -29,7 +29,7 @@ export const initGA = () => {
       };
     }
   }
-  console.log('Google Analytics ready with ID:', GA_MEASUREMENT_ID);
+  // Removed console.log for production
 };
 
 /**
@@ -39,7 +39,7 @@ export const initGA = () => {
  */
 export const trackPageView = (path: string, title?: string) => {
   if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
-    console.log('Google Analytics [Placeholder]: Page view:', path, title);
+    // Removed console.log for production - placeholder detection only
     return;
   }
 
@@ -58,7 +58,7 @@ export const trackPageView = (path: string, title?: string) => {
  */
 export const trackEvent = (eventName: string, eventParams?: Record<string, unknown>) => {
   if (GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') {
-    console.log('Google Analytics [Placeholder]: Event:', eventName, eventParams);
+    // Removed console.log for production - placeholder detection only
     return;
   }
 
