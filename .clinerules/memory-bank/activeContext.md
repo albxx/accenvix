@@ -23,9 +23,15 @@ Maintaining and updating the memory bank documentation to reflect the newly impl
 
 ## Next Steps (SEO & Marketing)
 1. Submit sitemap to Google Search Console
-2. Set up Google Analytics
-3. Create a Google Business Profile
-4. Consider adding more JSON-LD schemas (FAQ, Review, etc.)
+2. Create a Google Business Profile
+3. Consider adding more JSON-LD schemas (FAQ, Review, etc.)
+4. **Google Analytics 4 Setup (Completed)**
+   - Added placeholder GA4 configuration in `src/lib/analytics.ts`
+   - Created `useAnalytics` hook for page view tracking in `src/hooks/useAnalytics.ts`
+   - Added GA tag to `index.html` (placeholder ID: G-MEASUREMENT_ID)
+   - Integrated analytics tracker in `App.tsx`
+   - Updated `.env.example` with `VITE_GA_MEASUREMENT_ID` variable
+   - To activate: Replace `G-MEASUREMENT_ID` with your actual GA4 Measurement ID
 
 ## Active Decisions and Considerations
 - Following the established .clinerules framework for documentation

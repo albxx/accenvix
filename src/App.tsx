@@ -23,8 +23,15 @@ import Reports from "./pages/admin/Reports";
 import './lib/i18n';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { useAnalytics } from './hooks/useAnalytics';
 
 const queryClient = new QueryClient();
+
+// Analytics component to track page views
+const AnalyticsTracker = () => {
+  useAnalytics();
+  return null;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -37,6 +44,7 @@ const App = () => (
             v7_startTransition: true,
             v7_relativeSplatPath: true
           }}>
+            <AnalyticsTracker />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
