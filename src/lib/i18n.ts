@@ -22,7 +22,7 @@ i18n
   .use(initReactI18next) // Passes i18n down to react-i18next
   .init({
     resources,
-    fallbackLng: 'ms', // Default to Malay
+    fallbackLng: 'en', // Default to English
     debug: false,
     interpolation: {
       escapeValue: false // React already safes from XSS

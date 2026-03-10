@@ -362,7 +362,7 @@ export function EnhancedProjectForm({ onSuccess, onCancel, initialData }: Enhanc
                       {categories.map(category => (
                         <SelectItem key={category.id} value={category.name}>
                           <div className="flex items-center gap-2">
-                            <Badge variant="outline" style={{ backgroundColor: category.color + '20', color: category.color }}>
+                            <Badge variant="outline" className="bg-opacity-20" style={{ backgroundColor: category.color, color: category.color }}>
                               {category.name}
                             </Badge>
                           </div>

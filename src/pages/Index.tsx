@@ -72,12 +72,12 @@ export default function Index() {
         {/* Background Glow and Pattern */}
         <div className="absolute inset-0 gradient-glow" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse-glow animate-float-delay-1s" />
         
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 w-16 h-16 rounded-full bg-primary/10 blur-xl animate-float" />
-        <div className="absolute top-40 right-20 w-24 h-24 rounded-full bg-accent/10 blur-xl animate-float" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-40 left-20 w-20 h-20 rounded-full bg-primary/10 blur-xl animate-float" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-40 right-20 w-24 h-24 rounded-full bg-accent/10 blur-xl animate-float animate-float-delay-2s" />
+        <div className="absolute bottom-40 left-20 w-20 h-20 rounded-full bg-primary/10 blur-xl animate-float animate-float-delay-3s" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">

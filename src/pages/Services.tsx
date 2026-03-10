@@ -56,7 +56,7 @@ export default function Services() {
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 animate-slide-up">
               {t('services.pageTitle')} <span className="text-gradient">{t('services.titleHighlight')}</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground animate-slide-up" style={{ animationDelay: "0.2s" }}>
+            <p className="text-lg md:text-xl text-muted-foreground animate-slide-up animate-delay-200">
               {t('services.pageSubtitle')}
             </p>
           </div>
